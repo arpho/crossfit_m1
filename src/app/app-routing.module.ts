@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './services/user/authguard';
 
 const routes: Routes = [
   {
@@ -16,15 +17,15 @@ const routes: Routes = [
     loadChildren: './list/list.module#ListPageModule'
   },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
+  { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule', canActivate: [AuthGuard] },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
-  { path: 'pr-create', loadChildren: './pages/pr-create/pr-create.module#PrCreatePageModule' },
-  { path: 'pr-detail', loadChildren: './pages/pr-detail/pr-detail.module#PrDetailPageModule' },
-  { path: 'pr-list', loadChildren: './pages/pr-list/pr-list.module#PrListPageModule' }
+  { path: 'pr-create', loadChildren: './pages/pr-create/pr-create.module#PrCreatePageModule', canActivate: [AuthGuard] },
+  { path: 'pr-detail', loadChildren: './pages/pr-detail/pr-detail.module#PrDetailPageModule', canActivate: [AuthGuard] },
+  { path: 'pr-list', loadChildren: './pages/pr-list/pr-list.module#PrListPageModule', canActivate: [AuthGuard] }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

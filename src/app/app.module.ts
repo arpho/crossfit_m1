@@ -9,6 +9,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import * as firebase from 'firebase/app';
+import { AuthGuard } from '../app/services/user/authguard';
+import {AuthService } from './services/user/auth.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,8 +23,10 @@ import * as firebase from 'firebase/app';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
+    AuthGuard,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
