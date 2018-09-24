@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ProfilePage implements OnInit {
   public userProfile: any;
-  public birthDate: Date;
+  public birthDate: string;
   constructor(
     private alertCtrl: AlertController,
     private authService: AuthService,
@@ -22,8 +22,7 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.profileService.getUserProfile().on('value', userProfileSnapshot => {
       this.userProfile = userProfileSnapshot.val();
-      this.birthDate = userProfileSnapshot.val().birthDate;
-      console.log(this.birthDate);
+      this.birthDate = new Date(userProfileSnapshot.val().birthDate).toISOString();
     });
   }
 
