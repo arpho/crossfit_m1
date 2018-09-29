@@ -22,7 +22,9 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     this.profileService.getUserProfile().on('value', userProfileSnapshot => {
       this.userProfile = userProfileSnapshot.val();
+      console.log(userProfileSnapshot.val().birthDate);
       this.birthDate = new Date(userProfileSnapshot.val().birthDate).toISOString();
+      console.log(this.birthDate);
     });
   }
 

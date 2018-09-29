@@ -1,9 +1,41 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pr-create</ion-title>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+    <ion-title>Nuovo Pr</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-item>
+    <ion-label stacked>Pr</ion-label>
+    <ion-input [(ngModel)]="prName" type="text"
+    placeholder="Cosa hai fatto?">
+    </ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label stacked>Risultato</ion-label>
+    <ion-input [(ngModel)]="prResult" type="number"
+    placeholder="Quanto hai fatto?">
+    </ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label stacked>Peso/Tempo
+        <ion-icon name="time"></ion-icon></ion-label>
+        <ion-icon name="bowtie"></ion-icon>
 
-</ion-content>
+    <ion-toggle [(ngModel)]="prUnit" type="number"
+    placeholder="tempo o kg?">
+    </ion-toggle>
+    </ion-item>
+    <ion-item>
+    <ion-label>Event Date</ion-label>
+    <ion-datetime #eventDate displayFormat="D MMM, YY"
+    pickerFormat="DD MMM YYYY" min="2017" max="2020-12-31">
+    </ion-datetime>
+    </ion-item>
+    <ion-button expand="block"
+    (click)="createEvent(eventName, eventDate.value, eventPrice, eventCost)">
+    Create Event
+    </ion-button>
