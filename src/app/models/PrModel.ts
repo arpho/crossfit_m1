@@ -1,16 +1,68 @@
-export class PrDetail {
+import { ItemInterface, Value } from '../components/item-component/itemInterface';
+export class ResultModel implements ItemInterface {
     public id: Number;
     public date: Date;
-    public prestazione: Number;
+    public prestazione: number;
     constructor(
         Id?: Number,
-        Date?: Date,
-        Prestazione?: Number
+        date?: Date,
+        Prestazione?: number
     ) {
         this.id = Id;
-        this.date = Date;
+        this.date = date || new Date();
         this.prestazione = Prestazione
     }
+
+    getValue0() {
+        let v = new Value
+        v.label = "";
+        v.value = this.prestazione;
+        return v;
+    }
+
+    getValue1() {
+        let v = new Value
+        v.label = "Data";
+        v.value = this.prestazione;
+        return v;
+    }
+
+    getValue2() {
+        let v = new Value
+        v.label = "Data";
+        v.value = this.prestazione;
+        return v;
+    }
+
+    getValue3() {
+        let v = new Value
+        v.label = "Data";
+        v.value = this.prestazione;
+        return v;
+    }
+
+    getValue4() {
+        let v = new Value
+        v.label = "Data";
+        v.value = this.prestazione;
+        return v;
+    }
+
+    getAggregate() {
+        let v = new Value
+        v.label = "%";
+        return v;
+    }
+
+    aggregateAction(){
+    }
+
+    showDetail(){}
+
+    getFilterParams(){
+        return [{label:"data",key:'date'}];
+    }
+
 
 }
 type Unity = 'Kg' | 'sec';
@@ -19,14 +71,14 @@ type PrType = 'hero' | 'girl' | 'generic';
 export class PrModel {
     public descrizione: String;
     public unity: Unity;
-    public prList: PrDetail[];
+    public prList: ResultModel[];
     public typePr: PrType;
 
 
     constructor(
         Descrizione?: String,
         Unity?: Unity,
-        PrList?: PrDetail[],
+        PrList?: ResultModel[],
         TypePr?: PrType
     ) {
         this.descrizione = Descrizione || 'nuovo Pr';
@@ -35,52 +87,52 @@ export class PrModel {
         this.typePr = TypePr || 'generic';
     }
 
-    pushPr(pr: PrDetail) {
+    pushPr(pr: ResultModel) {
         pr.id = this.prList.length;
         this.prList.push(pr);
         this.prList = [...this.prList] //aggiorna il puntatore all'oggetto, così da rilevare il cambio
 
     }
 
-    updatePr(pr: PrDetail) {
-        this.prList.map((value: PrDetail) => value.id == pr.id ? pr : value);
+    updatePr(pr: ResultModel) {
+        this.prList.map((value: ResultModel) => value.id == pr.id ? pr : value);
     }
 
-    deletePr(pr: PrDetail) {
-        this.prList.filter((value: PrDetail) => (value.id != pr.id))
+    deletePr(pr: ResultModel) {
+        this.prList.filter((value: ResultModel) => (value.id != pr.id))
     }
 
-    getLast(): PrDetail {
-        return this.prList.reduce((prev: PrDetail, current: PrDetail) =>
+    getLast(): ResultModel {
+        return this.prList.reduce((prev: ResultModel, current: ResultModel) =>
             (prev.date.getTime() > current.date.getTime()) ? prev : current);
     }
 }
-interface BestInterface{
-    getBest():PrDetail;
+interface BestInterface {
+    getBest(): ResultModel;
 }
 export class PrTime extends PrModel implements BestInterface {
     constructor(
         Descrizione: string,
         Unity?: Unity,
-        PrList?: PrDetail[],
+        PrList?: ResultModel[],
         TypePr?: PrType
     ) {
-        super(Descrizione, Unity, PrList, TypePr);
+        super(Descrizione, 'sec', PrList, TypePr);
     }
-    getBest(){
-        return this.prList.reduce((prev: PrDetail, current: PrDetail) => (prev.prestazione < current.prestazione) ? prev : current);
+    getBest() {
+        return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione < current.prestazione) ? prev : current);
     }
 }
 export class PrKg extends PrModel implements BestInterface {
     constructor(
         Descrizione: string,
         Unity?: Unity,
-        PrList?: PrDetail[],
+        PrList?: ResultModel[],
         TypePr?: PrType
     ) {
-        super(Descrizione, Unity, PrList, TypePr);
+        super(Descrizione, 'Kg', PrList, TypePr);
     }
-    getBest(){
-        return this.prList.reduce((prev: PrDetail, current: PrDetail) => (prev.prestazione > current.prestazione) ? prev : current);
+    getBest() {
+        return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione > current.prestazione) ? prev : current);
     }
 }

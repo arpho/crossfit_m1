@@ -23,17 +23,15 @@
     <ion-item>
     <ion-label stacked>Peso/Tempo
         <ion-icon name="time"></ion-icon></ion-label>
-        <ion-icon name="bowtie"></ion-icon>
-
-    <ion-toggle [(ngModel)]="prUnit" type="number"
-    placeholder="tempo o kg?">
+        <p ng-switch="PrType">
+            <img src="assets/icon/kg.png" (click)="addResult()" ng-switch-when="true"> 
+            <ion-icon name = "time" ng-switch-default></ion-icon>
+    </p>
+        
+        
+    <ion-toggle [(ngModel)]="prType" type="number" (click)="getUnity()"
+    placeholder="getUnity()">
     </ion-toggle>
-    </ion-item>
-    <ion-item>
-    <ion-label>Event Date</ion-label>
-    <ion-datetime #eventDate displayFormat="D MMM, YY"
-    pickerFormat="DD MMM YYYY" min="2017" max="2020-12-31">
-    </ion-datetime>
     </ion-item>
     <ion-button expand="block"
     (click)="createEvent(eventName, eventDate.value, eventPrice, eventCost)">

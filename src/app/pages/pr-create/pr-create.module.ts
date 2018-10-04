@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PrCreatePage } from './pr-create.page';
+import { ItemListComponent } from '../../components/item-list-component/item-list-component.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
+    
     CommonModule,
     FormsModule,
     IonicModule,
@@ -23,4 +25,4 @@ const routes: Routes = [
   ],
   declarations: [PrCreatePage]
 })
-export class PrCreatePageModule {}
+export class PrCreatePageModule { }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { PrDetail, PrModel } from '../../models/PrModel';
+import { ResultModel, PrModel } from '../../models/PrModel';
 
 @Injectable({
   providedIn: 'root'

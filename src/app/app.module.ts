@@ -12,9 +12,12 @@ import * as firebase from 'firebase/app';
 import { ProfileService } from './services/user/profile.service'
 import { AuthGuard } from '../app/services/user/authguard';
 import { AuthService } from './services/user/auth.service';
+import { ItemComponent } from './components/item-component/item-component.component';
+import { ItemListComponent } from './components/item-list-component/item-list-component.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ItemComponent, ItemListComponent],
+  exports: [ItemListComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
