@@ -13,10 +13,12 @@ import { ProfileService } from './services/user/profile.service';
 import { AuthGuard } from '../app/services/user/authguard';
 import { AuthService } from './services/user/auth.service';
 import { ItemModule } from '../app/modules/item-module/item-module';
+import { JustTestComponent } from './just-test/just-test.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    JustTestComponent,
   ],
   exports: [],
   entryComponents: [],

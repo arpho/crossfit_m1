@@ -74,15 +74,18 @@ export class PrModel {
     public prList: ResultModel[];
     public typePr: PrType;
 
+    cloneOtherModel(): PrModel {
+        return this;
+    }
 
     constructor(
         Descrizione?: String,
-        Unity?: Unity,
+        unity?: Unity,
         PrList?: ResultModel[],
         TypePr?: PrType
     ) {
         this.descrizione = Descrizione || 'nuovo Pr';
-        this.unity = Unity || 'Kg';
+        this.unity = unity || 'Kg';
         this.prList = PrList || [];
         this.typePr = TypePr || 'generic';
     }
@@ -112,24 +115,41 @@ interface BestInterface {
 }
 export class PrTime extends PrModel implements BestInterface {
     constructor(
-        Descrizione: string,
+        Descrizione?: string,
         PrList?: ResultModel[],
         TypePr?: PrType
     ) {
         super(Descrizione, 'sec', PrList, TypePr);
     }
+
+    cloneOtherModel(): PrModel {
+        const sec = new PrKg();
+        sec.descrizione = this.descrizione;
+        sec.prList = this.prList;
+        return sec;
+    }
+
+
     getBest() {
         return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione < current.prestazione) ? prev : current);
     }
 }
 export class PrKg extends PrModel implements BestInterface {
     constructor(
-        Descrizione: string,
+        Descrizione?: string,
         PrList?: ResultModel[],
         TypePr?: PrType
     ) {
         super(Descrizione, 'Kg', PrList, TypePr);
     }
+
+    cloneOtherModel(): PrModel {
+        const sec = new PrTime();
+        sec.descrizione = this.descrizione;
+        sec.prList = this.prList;
+        return sec;
+    }
+
     getBest() {
         return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione > current.prestazione) ? prev : current);
     }

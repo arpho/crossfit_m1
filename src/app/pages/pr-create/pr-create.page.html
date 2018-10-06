@@ -25,12 +25,12 @@
         Peso/Tempo
     </ion-label>
     <div  [ngSwitch]="prType">
-        <div *ngSwitchCase="true"><img src="assets/icon/kg.png" (click)="addResult()" ng-switch-when="Kg"> </div>
-        <div *ngSwitchDefault> <ion-icon name = "time" ng-switch-default></ion-icon></div>
+        <div *ngSwitchCase="true"><img src="assets/icon/kg.png" (click)="addResult()" ng-switch-when="true"> </div>
+        <div *ngSwitchDefault> <ion-icon name = "time" ng-switch-default (click)="addResult()" ></ion-icon></div>
     </div>
         
         
-    <ion-toggle [(ngModel)]="prType" type="number" (click)="getUnity()"
+    <ion-toggle [(ngModel)]="prType" (ngModelChange)="change($event)" type="boolean" (change)="getUnity()" (click)="getUnity()"
     placeholder="getUnity()">
     </ion-toggle>
     </ion-item>
@@ -38,4 +38,3 @@
     (click)="addResult()">
     Inserisci Pr
     </ion-button>
-    <item-component></item-component>

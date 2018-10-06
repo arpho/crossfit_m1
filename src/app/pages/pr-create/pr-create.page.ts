@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { PrModel, ResultModel } from '../../models/PrModel';
+import { PrModel, ResultModel, PrKg } from '../../models/PrModel';
 
 @Component({
   selector: 'app-pr-create',
@@ -12,9 +12,9 @@ export class PrCreatePage implements OnInit {
   public prType: boolean;
   public PrIconType: string;
   constructor(public alertCtrl: AlertController) {
-    this.Pr = new PrModel();
     this.prType = true;
-    this.PrIconType = 'Kg';
+    this.Pr = new PrKg();
+
   }
 
   ngOnInit() {
@@ -30,6 +30,12 @@ export class PrCreatePage implements OnInit {
   showIcon(type) {
     console.log(type);
     return 'Kg';
+  }
+  change() {
+    console.log('change', this.prType);
+    console.log(this.Pr);
+    this.Pr = this.Pr.cloneOtherModel();
+    console.log(this.Pr);
   }
 
   async addResult(): Promise<void> {
@@ -49,8 +55,8 @@ export class PrCreatePage implements OnInit {
       buttons: [{ text: 'Annulla' }, {
         text: 'Ok',
         handler: data => {
-          result.prestazione = data[0]
-          result.date = new Date(data[1])
+          result.prestazione = data[0];
+          result.date = new Date(data[1]);
           console.log(result);
           this.Pr.pushPr(result);
           console.log(this.Pr);
