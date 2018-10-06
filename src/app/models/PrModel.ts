@@ -1,4 +1,4 @@
-import { ItemInterface, Value } from '../components/item-component/itemInterface';
+import { ItemInterface, Value } from '../modules/item-module/models/itemInterface';
 export class ResultModel implements ItemInterface {
     public id: Number;
     public date: Date;
@@ -10,57 +10,57 @@ export class ResultModel implements ItemInterface {
     ) {
         this.id = Id;
         this.date = date || new Date();
-        this.prestazione = Prestazione
+        this.prestazione = Prestazione;
     }
 
     getValue0() {
-        let v = new Value
-        v.label = "";
+        const v = new Value();
+        v.label = '';
         v.value = this.prestazione;
         return v;
     }
 
     getValue1() {
-        let v = new Value
-        v.label = "Data";
+        const v = new Value();
+        v.label = 'Data';
         v.value = this.prestazione;
         return v;
     }
 
     getValue2() {
-        let v = new Value
-        v.label = "Data";
+        const v = new Value();
+        v.label = 'Data';
         v.value = this.prestazione;
         return v;
     }
 
     getValue3() {
-        let v = new Value
-        v.label = "Data";
+        const v = new Value();
+        v.label = 'Data';
         v.value = this.prestazione;
         return v;
     }
 
     getValue4() {
-        let v = new Value
-        v.label = "Data";
+        const v = new Value();
+        v.label = 'Data';
         v.value = this.prestazione;
         return v;
     }
 
     getAggregate() {
-        let v = new Value
-        v.label = "%";
+        const v = new Value();
+        v.label = '%';
         return v;
     }
 
-    aggregateAction(){
+    aggregateAction() {
     }
 
-    showDetail(){}
+    showDetail() { }
 
-    getFilterParams(){
-        return [{label:"data",key:'date'}];
+    getFilterParams() {
+        return [{ label: 'data', key: 'date' }];
     }
 
 
@@ -90,16 +90,16 @@ export class PrModel {
     pushPr(pr: ResultModel) {
         pr.id = this.prList.length;
         this.prList.push(pr);
-        this.prList = [...this.prList] //aggiorna il puntatore all'oggetto, così da rilevare il cambio
+        this.prList = [...this.prList]; // aggiorna il puntatore all'oggetto, così da rilevare il cambio
 
     }
 
     updatePr(pr: ResultModel) {
-        this.prList.map((value: ResultModel) => value.id == pr.id ? pr : value);
+        this.prList.map((value: ResultModel) => value.id === pr.id ? pr : value);
     }
 
-    deletePr(pr: ResultModel) {
-        this.prList.filter((value: ResultModel) => (value.id != pr.id))
+    removePr(pr: ResultModel) {
+        this.prList.filter((value: ResultModel) => (value.id !== pr.id));
     }
 
     getLast(): ResultModel {
@@ -113,7 +113,6 @@ interface BestInterface {
 export class PrTime extends PrModel implements BestInterface {
     constructor(
         Descrizione: string,
-        Unity?: Unity,
         PrList?: ResultModel[],
         TypePr?: PrType
     ) {
@@ -126,7 +125,6 @@ export class PrTime extends PrModel implements BestInterface {
 export class PrKg extends PrModel implements BestInterface {
     constructor(
         Descrizione: string,
-        Unity?: Unity,
         PrList?: ResultModel[],
         TypePr?: PrType
     ) {

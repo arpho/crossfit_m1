@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import {configs} from './configs/configs'
+import {configs} from './configs/configs';
 import * as firebase from 'firebase/app';
 
 @Component({
@@ -30,7 +30,7 @@ export class AppComponent {
     private statusBar: StatusBar
   ) {
     this.initializeApp();
-    firebase.initializeApp(configs.firebase)
+    firebase.initializeApp(configs.firebase);
   }
 
   initializeApp() {

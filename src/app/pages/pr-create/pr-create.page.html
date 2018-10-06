@@ -14,19 +14,20 @@
     placeholder="Cosa hai fatto?">
     </ion-input>
     </ion-item>
-    <ion-item>
+    <!--ion-item>
     <ion-label stacked>Risultato</ion-label>
     <ion-input [(ngModel)]="prResult" type="number"
     placeholder="Quanto hai fatto?">
     </ion-input>
-    </ion-item>
+    </ion-item-->
     <ion-item>
-    <ion-label stacked>Peso/Tempo
-        <ion-icon name="time"></ion-icon></ion-label>
-        <p ng-switch="PrType">
-            <img src="assets/icon/kg.png" (click)="addResult()" ng-switch-when="true"> 
-            <ion-icon name = "time" ng-switch-default></ion-icon>
-    </p>
+    <ion-label stacked>
+        Peso/Tempo
+    </ion-label>
+    <div  [ngSwitch]="prType">
+        <div *ngSwitchCase="true"><img src="assets/icon/kg.png" (click)="addResult()" ng-switch-when="Kg"> </div>
+        <div *ngSwitchDefault> <ion-icon name = "time" ng-switch-default></ion-icon></div>
+    </div>
         
         
     <ion-toggle [(ngModel)]="prType" type="number" (click)="getUnity()"
@@ -34,6 +35,7 @@
     </ion-toggle>
     </ion-item>
     <ion-button expand="block"
-    (click)="createEvent(eventName, eventDate.value, eventPrice, eventCost)">
-    Create Event
+    (click)="addResult()">
+    Inserisci Pr
     </ion-button>
+    <item-component></item-component>

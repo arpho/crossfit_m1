@@ -8,47 +8,52 @@ import { PrModel, ResultModel } from '../../models/PrModel';
   styleUrls: ['./pr-create.page.scss'],
 })
 export class PrCreatePage implements OnInit {
- public Pr:PrModel
- public prType:boolean
-  constructor(public alertCtrl: AlertController) { 
+  public Pr: PrModel;
+  public prType: boolean;
+  public PrIconType: string;
+  constructor(public alertCtrl: AlertController) {
     this.Pr = new PrModel();
-    this.prType = false
+    this.prType = true;
+    this.PrIconType = 'Kg';
   }
 
   ngOnInit() {
   }
-  formatDate(data:Date){
-    return data.toISOString().substring(0,10);
+  formatDate(data: Date) {
+    return data.toISOString().substring(0, 10);
   }
-  getUnity(){
-    //return this.prType?"Kg"|"sec"
+  getUnity() {
+    // return this.prType?"Kg"|"sec"
     console.log(this.prType);
   }
 
+  showIcon(type) {
+    console.log(type);
+    return 'Kg';
+  }
+
   async addResult(): Promise<void> {
-    let self = this;
-    console.log(this.prType)
+    console.log(this.prType);
     const result = new ResultModel();
-    console.log('isostring',result.date.toISOString().substring(0,10))
-    console.log('dateString',result.date.toDateString());
     const alert = await this.alertCtrl.create({
       subHeader: 'Il tuo nuovo Pr',
       inputs: [{
-        type: "number",
+        type: 'number',
         placeholder: 'risultato',
       },
       {
-        type: "date",
+        type: 'date',
         placeholder: 'data',
         value: this.formatDate(result.date)
       }],
-      buttons:[{text:"Annulla"},{
-        text:"Ok",
-        handler: data=>{
+      buttons: [{ text: 'Annulla' }, {
+        text: 'Ok',
+        handler: data => {
           result.prestazione = data[0]
           result.date = new Date(data[1])
           console.log(result);
-          self.Pr.pushPr(result);
+          this.Pr.pushPr(result);
+          console.log(this.Pr);
         }
       }]
     });
