@@ -21,7 +21,7 @@ import { JustTestComponent } from './just-test/just-test.component';
     JustTestComponent,
   ],
   exports: [],
-  entryComponents: [],
+  entryComponents: [JustTestComponent],
   imports: [
     BrowserModule,
     CommonModule,

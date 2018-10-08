@@ -34,6 +34,20 @@
     placeholder="getUnity()">
     </ion-toggle>
     </ion-item>
+
+    <ion-item>
+        <ion-label stacked>
+            Girl
+        </ion-label>
+        <div  [ngSwitch]="woman">
+            <div *ngSwitchCase="true"><ion-icon name="woman"></ion-icon> </div>
+        </div>
+            
+            
+        <ion-toggle [(ngModel)]="woman" (ngModelChange)="change($event)" type="boolean" (change)="getUnity()" (click)="getUnity()"
+        placeholder="getUnity()">
+        </ion-toggle>
+        </ion-item>
     <ion-button expand="block"
     (click)="addResult()">
     Inserisci Pr

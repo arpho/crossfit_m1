@@ -6,7 +6,7 @@ export class ResultModel implements ItemInterface {
     constructor(
         Id?: Number,
         date?: Date,
-        Prestazione?: number
+        Prestazione?: number,
     ) {
         this.id = Id;
         this.date = date || new Date();
@@ -126,6 +126,7 @@ export class PrTime extends PrModel implements BestInterface {
         const sec = new PrKg();
         sec.descrizione = this.descrizione;
         sec.prList = this.prList;
+        sec.typePr = this.typePr;
         return sec;
     }
 
@@ -147,6 +148,7 @@ export class PrKg extends PrModel implements BestInterface {
         const sec = new PrTime();
         sec.descrizione = this.descrizione;
         sec.prList = this.prList;
+        sec.typePr = this.typePr;
         return sec;
     }
 

@@ -11,9 +11,11 @@ export class PrCreatePage implements OnInit {
   public Pr: PrModel;
   public prType: boolean;
   public PrIconType: string;
+  public girl: boolean;
   constructor(public alertCtrl: AlertController) {
     this.prType = true;
     this.Pr = new PrKg();
+    this.girl = false;
 
   }
 
