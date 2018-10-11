@@ -73,6 +73,8 @@ export class PrModel {
     public unity: Unity;
     public prList: ResultModel[];
     public typePr: PrType;
+    public girl: boolean;
+    public hero: boolean;
 
     cloneOtherModel(): PrModel {
         return this;
@@ -127,6 +129,8 @@ export class PrTime extends PrModel implements BestInterface {
         sec.descrizione = this.descrizione;
         sec.prList = this.prList;
         sec.typePr = this.typePr;
+        sec.hero = this.hero;
+        sec.girl = this.girl;
         return sec;
     }
 
@@ -149,6 +153,8 @@ export class PrKg extends PrModel implements BestInterface {
         sec.descrizione = this.descrizione;
         sec.prList = this.prList;
         sec.typePr = this.typePr;
+        sec.hero = this.hero;
+        sec.girl = this.girl;
         return sec;
     }
 

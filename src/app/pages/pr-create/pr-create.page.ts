@@ -13,13 +13,15 @@ export class PrCreatePage implements OnInit {
   public Pr: PrModel;
   public prType: boolean;
   public PrIconType: string;
-  public girl: boolean;
+  public woman: boolean;
+  public hero: boolean;
   constructor(public alertCtrl: AlertController,
     public router: Router,
     public prService: PrService) {
     this.prType = true;
     this.Pr = new PrKg();
-    this.girl = false;
+    this.woman = false;
+    this.hero = false;
 
   }
 
@@ -38,16 +40,28 @@ export class PrCreatePage implements OnInit {
     return 'Kg';
   }
   change() {
-    console.log('change', this.prType);
-    console.log(this.Pr);
     this.Pr = this.Pr.cloneOtherModel();
-    console.log(this.Pr);
+  }
+  changeHero() {
+    console.log('change', this.prType);
+    this.Pr = this.Pr.cloneOtherModel();
+    if (this.hero && this.woman) {
+      this.woman = false;
+      this.Pr.girl = this.woman;
+      this.Pr.hero = this.hero;
+    }
+  }
+  changeGirl() {
+    this.Pr = this.Pr.cloneOtherModel();
+    if (this.hero && this.woman) {
+      this.hero = false;
+    }
   }
 
 
 
   createPr(pr: PrModel) {
-    console.log(this.Pr,pr);
+    console.log(this.Pr, pr);
     this.prService.createPr(pr).then(() => {
       this.router.navigateByUrl('');
     });

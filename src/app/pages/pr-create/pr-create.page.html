@@ -44,10 +44,24 @@
         </div>
             
             
-        <ion-toggle [(ngModel)]="woman" (ngModelChange)="change($event)" type="boolean" (change)="getUnity()" (click)="getUnity()"
+        <ion-toggle [(ngModel)]="woman" (ngModelChange)="changeGirl($event)" type="boolean" (change)="getUnity()" (click)="getUnity()"
         placeholder="getUnity()">
         </ion-toggle>
         </ion-item>
+        <ion-item>
+            <ion-label stacked>
+                Hero
+            </ion-label>
+            <div  [ngSwitch]="hero">
+                <div *ngSwitchCase="true"><img src="assets/icon/hero.ico" (click)="addResult()" ng-switch-when="true"> </div>
+            </div>               
+                
+            <ion-toggle [(ngModel)]="hero" (ngModelChange)="changeHero(Girl$event)" type="boolean" (change)="getUnity()" (click)="getUnity()"
+            placeholder="getUnity()">
+
+ 
+            </ion-toggle>
+            </ion-item>
     <ion-button expand="block"
     (click)="createPr(Pr)">
     Inserisci Pr
