@@ -33,17 +33,20 @@ export class PrService {
       revenue: eventCost * -1,
     });
   }
-  createPr(pr: PrModel): firebase.database.ThenableReference { return this.prListRef.push(pr) }
+  createPr(pr: PrModel): firebase.database.ThenableReference {
+    console.log('creating pr', pr);
+    return this.prListRef.push(pr);
+  }
 
   getPrList(): firebase.database.Reference {
     return this.prListRef;
   }
 
-  getEventDetail(eventId:string): firebase.database.Reference {
+  getEventDetail(eventId: string): firebase.database.Reference {
     return this.eventListRef.child(eventId);
-    }
-    getPr(prId:string): firebase.database.Reference {
-      return this.prListRef.child(prId)
-    }
+  }
+  getPr(prId: string): firebase.database.Reference {
+    return this.prListRef.child(prId)
+  }
 
 }

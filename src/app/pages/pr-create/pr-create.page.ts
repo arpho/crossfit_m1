@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { PrModel, ResultModel, PrKg } from '../../models/PrModel';
+import { PrService } from '../../services/pr/pr.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pr-create',
@@ -12,7 +14,9 @@ export class PrCreatePage implements OnInit {
   public prType: boolean;
   public PrIconType: string;
   public girl: boolean;
-  constructor(public alertCtrl: AlertController) {
+  constructor(public alertCtrl: AlertController,
+    public router: Router,
+    public prService: PrService) {
     this.prType = true;
     this.Pr = new PrKg();
     this.girl = false;
@@ -40,6 +44,15 @@ export class PrCreatePage implements OnInit {
     console.log(this.Pr);
   }
 
+
+
+  createPr(pr: PrModel) {
+    console.log(this.Pr,pr);
+    this.prService.createPr(pr).then(() => {
+      this.router.navigateByUrl('');
+    });
+  }
+
   async addResult(): Promise<void> {
     console.log(this.prType);
     const result = new ResultModel();
@@ -48,6 +61,7 @@ export class PrCreatePage implements OnInit {
       inputs: [{
         type: 'number',
         placeholder: 'risultato',
+        label: this.Pr.unity
       },
       {
         type: 'date',
