@@ -62,7 +62,18 @@
  
             </ion-toggle>
             </ion-item>
+<ion-item>
+  <ion-list>
+    <ion-item *ngFor="let result  of Pr.prList" (click)="goToEventDetail(event.id)">
+     
+      <p>Pr: <strong> {{result?.prestazione}} {{Pr.unity}} </strong></p>
+      <p> Data: <strong> {{result?.date}}</strong></p>
+    </ion-item>
+  </ion-list>
+</ion-item>
     <ion-button expand="block"
     (click)="createPr(Pr)">
     Inserisci Pr
     </ion-button>
+
+    <div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

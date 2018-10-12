@@ -69,6 +69,7 @@ type Unity = 'Kg' | 'sec';
 type PrType = 'hero' | 'girl' | 'generic';
 
 export class PrModel {
+    public id: string;
     public descrizione: String;
     public unity: Unity;
     public prList: ResultModel[];
@@ -78,6 +79,10 @@ export class PrModel {
 
     cloneOtherModel(): PrModel {
         return this;
+    }
+
+    getLastPr() {
+        return this.prList.reduce((max, p) => p.date > max.date ? p : max);
     }
 
     constructor(

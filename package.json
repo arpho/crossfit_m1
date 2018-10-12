@@ -28,7 +28,9 @@
     "core-js": "^2.5.3",
     "firebase": "^5.5.0",
     "firebase-admin": "^6.0.0",
+    "ionic-angular": "^3.9.2",
     "moment": "^2.22.2",
+    "ngx-order-pipe": "^2.0.1",
     "rxjs": "^6.2.2",
     "zone.js": "^0.8.26"
   },

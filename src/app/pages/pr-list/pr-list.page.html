@@ -1,12 +1,18 @@
 <ion-header>
   <ion-toolbar>
-      <ion-buttons slot="start">
-          <ion-back-button defaultHref="/home"></ion-back-button>
-        </ion-buttons>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
     <ion-title>pr-list</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-
+  <ion-list>
+    <ion-item *ngFor="let pr of prList" (click)="goToEventDetail(event.id)">
+      <h2>{{pr?.descrizione}}</h2>
+      <p>ultimo Pr: <strong>${{pr?.getLastPr().date}}</strong></p>
+      <p>Risultato: <strong>{{pr?.getLastPr().prestazione}}</strong></p>
+    </ion-item>
+  </ion-list>
 </ion-content>
