@@ -2,6 +2,7 @@ import { ItemInterface, Value } from '../modules/item-module/models/itemInterfac
 export class ResultModel implements ItemInterface {
     public id: Number;
     public date: Date;
+    public data: string;
     public prestazione: number;
     constructor(
         Id?: Number,
