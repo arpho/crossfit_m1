@@ -13,15 +13,11 @@ export class PrCreatePage implements OnInit {
   public Pr: PrModel;
   public prType: boolean;
   public PrIconType: string;
-  public woman: boolean;
-  public hero: boolean;
   constructor(public alertCtrl: AlertController,
     public router: Router,
     public prService: PrService) {
     this.prType = true;
     this.Pr = new PrKg();
-    this.woman = false;
-    this.hero = false;
 
   }
 
@@ -45,16 +41,14 @@ export class PrCreatePage implements OnInit {
   changeHero() {
     console.log('change', this.prType);
     this.Pr = this.Pr.cloneOtherModel();
-    if (this.hero && this.woman) {
-      this.woman = false;
-      this.Pr.girl = this.woman;
-      this.Pr.hero = this.hero;
+    if (this.Pr.hero && this.Pr.girl) {
+      this.Pr.girl = false;
     }
   }
   changeGirl() {
     this.Pr = this.Pr.cloneOtherModel();
-    if (this.hero && this.woman) {
-      this.hero = false;
+    if (this.Pr.hero && this.Pr.girl) {
+      this.Pr.hero = false;
     }
   }
 

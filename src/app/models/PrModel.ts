@@ -88,6 +88,8 @@ export class PrModel {
     ) {
         this.descrizione = Descrizione || 'nuovo Pr';
         this.unity = unity || 'Kg';
+        this.hero = false;
+        this.girl = false;
         this.prList = PrList || [];
         this.typePr = TypePr || 'generic';
     }
