@@ -11,8 +11,8 @@
   <ion-list>
     <ion-item *ngFor="let pr of prList" (click)="goToEventDetail(event.id)">
       <h2>{{pr?.descrizione}}</h2>
-      <p>ultimo Pr: <strong>${{pr?.getLastPr().date}}</strong></p>
-      <p>Risultato: <strong>{{pr?.getLastPr().prestazione}}</strong></p>
+      <p>ultimo Pr: <strong>${{pr?.getLastPr()?.stringifiedDate}}</strong></p>
+      <p>Risultato: <strong>{{pr?.getLastPr()?.prestazione }}{{pr.unity}}</strong></p>
     </ion-item>
   </ion-list>
 </ion-content>

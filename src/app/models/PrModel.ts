@@ -2,7 +2,7 @@ import { ItemInterface, Value } from '../modules/item-module/models/itemInterfac
 export class ResultModel implements ItemInterface {
     public id: Number;
     public date: Date;
-    public data: string;
+    public stringifiedDate: string;
     public prestazione: number;
     constructor(
         Id?: Number,
@@ -66,7 +66,7 @@ export class ResultModel implements ItemInterface {
 
 
 }
-type Unity = 'Kg' | 'sec';
+type Unity = ' Kg ' | ' sec ';
 type PrType = 'hero' | 'girl' | 'generic';
 
 export class PrModel {
@@ -83,7 +83,9 @@ export class PrModel {
     }
 
     getLastPr() {
-        return this.prList.reduce((max, p) => p.date > max.date ? p : max);
+        if (this.prList) {
+            return this.prList.reduce((max, p) => p.date > max.date ? p : max);
+        }
     }
 
     constructor(
@@ -93,7 +95,7 @@ export class PrModel {
         TypePr?: PrType
     ) {
         this.descrizione = Descrizione || 'nuovo Pr';
-        this.unity = unity || 'Kg';
+        this.unity = unity || ' Kg ';
         this.hero = false;
         this.girl = false;
         this.prList = PrList || [];
@@ -102,8 +104,10 @@ export class PrModel {
 
     pushPr(pr: ResultModel) {
         pr.id = this.prList.length;
+        console.log('inserting', pr);
         this.prList.push(pr);
         this.prList = [...this.prList]; // aggiorna il puntatore all'oggetto, così da rilevare il cambio
+        console.log('new list', this.prList);
 
     }
 
@@ -116,8 +120,10 @@ export class PrModel {
     }
 
     getLast(): ResultModel {
-        return this.prList.reduce((prev: ResultModel, current: ResultModel) =>
-            (prev.date.getTime() > current.date.getTime()) ? prev : current);
+        if (this.prList) {
+            return this.prList.reduce((prev: ResultModel, current: ResultModel) =>
+                (prev.date.getTime() > current.date.getTime()) ? prev : current);
+        }
     }
 }
 interface BestInterface {
@@ -153,7 +159,7 @@ export class PrKg extends PrModel implements BestInterface {
         PrList?: ResultModel[],
         TypePr?: PrType
     ) {
-        super(Descrizione, 'Kg', PrList, TypePr);
+        super(Descrizione, ' Kg ', PrList, TypePr);
     }
 
     cloneOtherModel(): PrModel {

@@ -14,6 +14,7 @@ import { AuthGuard } from '../app/services/user/authguard';
 import { AuthService } from './services/user/auth.service';
 import { ItemModule } from '../app/modules/item-module/item-module';
 import { JustTestComponent } from './just-test/just-test.component';
+import { UtilitiesService } from './services/utilities/utilities.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { JustTestComponent } from './just-test/just-test.component';
     StatusBar,
     SplashScreen,
     AuthService,
+    UtilitiesService,
     AuthGuard,
     ProfileService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

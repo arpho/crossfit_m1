@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { PrModel, ResultModel, PrKg } from '../../models/PrModel';
 import { PrService } from '../../services/pr/pr.service';
 import { Router } from '@angular/router';
+import { UtilitiesService } from '../../services/utilities/utilities.service';
 
 @Component({
   selector: 'app-pr-create',
@@ -13,7 +14,9 @@ export class PrCreatePage implements OnInit {
   public Pr: PrModel;
   public prType: boolean;
   public PrIconType: string;
+
   constructor(public alertCtrl: AlertController,
+    public Utilities: UtilitiesService,
     public router: Router,
     public prService: PrService) {
     this.prType = true;
@@ -79,15 +82,17 @@ export class PrCreatePage implements OnInit {
       buttons: [{ text: 'Annulla' }, {
         text: 'Ok',
         handler: data => {
+          console.log('handler');
           result.prestazione = data[0];
           result.date = new Date(data[1]);
+          result.stringifiedDate = String(result.date);
           console.log(result);
           this.Pr.pushPr(result);
           console.log(this.Pr);
-        }
-      }]
+  }
+}]
     });
-    await alert.present();
+await alert.present();
   }
 
 }

@@ -24,6 +24,7 @@ export class PrListPage implements OnInit {
       eventListSnapshot.forEach(snap => {
         console.log(snap.val());
         const Pr = new PrModel();
+        Pr.unity = snap.val().unity;
         Pr.descrizione = snap.val().descrizione;
         Pr.prList = snap.val().prList;
         Pr.hero = snap.val().hero || false;
