@@ -18,7 +18,7 @@ export class PrListPage implements OnInit {
   }
 
   ionViewDidLoad() {
-    this.prService.getPrList().on("value", eventListSnapshot => {
+    this.prService.getPrList().on('value', eventListSnapshot => {
       this.prList = [];
       eventListSnapshot.forEach(snap => {
         const Pr = new PrModel();
@@ -28,6 +28,7 @@ export class PrListPage implements OnInit {
         Pr.hero = snap.val().hero || false;
         Pr.girl = snap.val().girl || false;
         Pr.typePr = snap.val().typePr;
+        Pr.id = snap.key;
         /*this.prList.push({
         id: snap.key,
         descrizione: snap.val().descrizione

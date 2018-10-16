@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule', canActivate: [AuthGuard] },
   { path: 'signup', loadChildren: './pages/signup/signup.module#SignupPageModule' },
   { path: 'pr-create', loadChildren: './pages/pr-create/pr-create.module#PrCreatePageModule', canActivate: [AuthGuard] },
-  { path: 'pr-detail', loadChildren: './pages/pr-detail/pr-detail.module#PrDetailPageModule', canActivate: [AuthGuard] },
+  { path: 'pr-detail/:id', loadChildren: './pages/pr-detail/pr-detail.module#PrDetailPageModule', canActivate: [AuthGuard] },
   { path: 'pr-list', loadChildren: './pages/pr-list/pr-list.module#PrListPageModule', canActivate: [AuthGuard] }
 ];
 

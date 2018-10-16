@@ -82,8 +82,16 @@ export class PrModel {
         return this;
     }
 
+    loadPr(pr: any) {
+        this.descrizione = pr.descrizione;
+        this.unity = pr.unity;
+        this.girl = pr.girl;
+        this.hero = pr.hero;
+        this.id = pr.id;
+    }
+
     getLastPr() {
-        if (this.prList) {
+        if (this.prList && this.prList.length > 0) {
             return this.prList.reduce((max, p) => p.date > max.date ? p : max);
         }
     }
@@ -108,6 +116,7 @@ export class PrModel {
         this.prList = [...this.prList]; // aggiorna il puntatore all'oggetto, così da rilevare il cambio
 
     }
+
 
     updatePr(pr: ResultModel) {
         this.prList.map((value: ResultModel) => value.id === pr.id ? pr : value);
@@ -135,6 +144,7 @@ export class PrTime extends PrModel implements BestInterface {
     ) {
         super(Descrizione, ' sec ', PrList, TypePr);
     }
+
 
     cloneOtherModel(): PrModel {
         const sec = new PrKg();

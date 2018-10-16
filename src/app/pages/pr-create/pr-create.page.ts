@@ -14,6 +14,7 @@ export class PrCreatePage implements OnInit {
   public Pr: PrModel;
   public prType: boolean;
   public PrIconType: string;
+  public prName: string;
 
   constructor(public alertCtrl: AlertController,
     public Utilities: UtilitiesService,
@@ -58,7 +59,7 @@ export class PrCreatePage implements OnInit {
 
 
   createPr(pr: PrModel) {
-    pr.descrizione = this.prName;
+    pr.descrizione = this.Pr.descrizione;
     this.prService.createPr(pr).then(() => {
       this.router.navigateByUrl('');
     });

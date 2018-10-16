@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>pr-detail</ion-title>
+  <ion-buttons slot="start">
+  <ion-back-button></ion-back-button>
+  </ion-buttons>
+  <ion-title>{{currentPr?.descrizione}}</ion-title>
   </ion-toolbar>
-</ion-header>
+  </ion-header>
 
-<ion-content padding>
 
-</ion-content>
+
+
+  <ion-content padding>
+    <ion-card>
+    <ion-card-content>
+    <p>Ticket:
+    <!--strong>{{currentPr?}}</strong-->
+    </p>
+    <p>Date:
+    <!--strong>{{currentEvent?.date}}</strong-->
+    </p>
+    </ion-card-content>
+    </ion-card>
+    </ion-content>

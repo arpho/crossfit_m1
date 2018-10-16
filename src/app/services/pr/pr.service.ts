@@ -46,7 +46,7 @@ export class PrService {
     return this.eventListRef.child(eventId);
   }
   getPr(prId: string): firebase.database.Reference {
-    return this.prListRef.child(prId)
+    return this.prListRef.child(prId);
   }
 
 }
