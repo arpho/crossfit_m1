@@ -58,7 +58,7 @@ export class PrCreatePage implements OnInit {
 
 
   createPr(pr: PrModel) {
-    console.log(this.Pr, pr);
+    pr.descrizione = this.prName;
     this.prService.createPr(pr).then(() => {
       this.router.navigateByUrl('');
     });
@@ -82,17 +82,14 @@ export class PrCreatePage implements OnInit {
       buttons: [{ text: 'Annulla' }, {
         text: 'Ok',
         handler: data => {
-          console.log('handler');
           result.prestazione = data[0];
           result.date = new Date(data[1]);
-          result.stringifiedDate = String(result.date);
-          console.log(result);
+          result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
           this.Pr.pushPr(result);
-          console.log(this.Pr);
-  }
-}]
+        }
+      }]
     });
-await alert.present();
+    await alert.present();
   }
 
 }

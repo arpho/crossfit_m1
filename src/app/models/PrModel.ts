@@ -104,10 +104,8 @@ export class PrModel {
 
     pushPr(pr: ResultModel) {
         pr.id = this.prList.length;
-        console.log('inserting', pr);
         this.prList.push(pr);
         this.prList = [...this.prList]; // aggiorna il puntatore all'oggetto, così da rilevare il cambio
-        console.log('new list', this.prList);
 
     }
 
@@ -135,7 +133,7 @@ export class PrTime extends PrModel implements BestInterface {
         PrList?: ResultModel[],
         TypePr?: PrType
     ) {
-        super(Descrizione, 'sec', PrList, TypePr);
+        super(Descrizione, ' sec ', PrList, TypePr);
     }
 
     cloneOtherModel(): PrModel {

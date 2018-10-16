@@ -14,7 +14,6 @@ export class PrListPage implements OnInit {
   constructor(public prService: PrService) { }
 
   ngOnInit() {
-    console.log('init');
     this.ionViewDidLoad();
   }
 
@@ -22,7 +21,6 @@ export class PrListPage implements OnInit {
     this.prService.getPrList().on("value", eventListSnapshot => {
       this.prList = [];
       eventListSnapshot.forEach(snap => {
-        console.log(snap.val());
         const Pr = new PrModel();
         Pr.unity = snap.val().unity;
         Pr.descrizione = snap.val().descrizione;
@@ -34,7 +32,6 @@ export class PrListPage implements OnInit {
         id: snap.key,
         descrizione: snap.val().descrizione
         });*/
-        console.log(Pr);
         this.prList.push(Pr);
         return false;
       });
