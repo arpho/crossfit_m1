@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrService } from '../../services/pr/pr.service';
-import { PrModel } from '../../models/PrModel';
+import { PrModel, PrKg, PrTime } from '../../models/PrModel';
 
 @Component({
   selector: 'app-pr-detail',
@@ -17,13 +17,13 @@ export class PrDetailPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log('detail');
     const prId: string = this.route.snapshot.paramMap.get('id');
-    console.log(prId);
     this.prService.getPr(prId).on('value', prsnapshot => {
-    this.currentPr.loadPr( prsnapshot.val());
-    this.currentPr.id = prsnapshot.key;
-    console.log(this.currentPr.getLastPr());
+      this.currentPr = prsnapshot.val().unity === ' Kg ' ? new PrKg : new PrTime();
+      this.currentPr.loadPr(prsnapshot.val());
+      console.log(this.currentPr.getLastPr());
+      this.currentPr.id = prsnapshot.key;
+      console.log(this.currentPr.getLastPr());
     });
   }
 

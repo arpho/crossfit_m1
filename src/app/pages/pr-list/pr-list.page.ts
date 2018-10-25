@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrService } from '../../services/pr/pr.service';
-import { PrModel, ResultModel } from '../../models/PrModel';
+import { PrModel, ResultModel, PrKg, PrTime } from '../../models/PrModel';
 
 
 @Component({
@@ -21,8 +21,7 @@ export class PrListPage implements OnInit {
     this.prService.getPrList().on('value', eventListSnapshot => {
       this.prList = [];
       eventListSnapshot.forEach(snap => {
-        const Pr = new PrModel();
-        Pr.unity = snap.val().unity;
+        const Pr = snap.val().unity === ' Kg ' ? new PrKg() : new PrTime();
         Pr.descrizione = snap.val().descrizione;
         Pr.prList = snap.val().prList;
         Pr.hero = snap.val().hero || false;

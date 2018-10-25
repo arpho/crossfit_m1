@@ -11,9 +11,11 @@
   <ion-list>
     <ion-item tappable *ngFor="let pr of prList" 
     routerLink="/pr-detail/{{pr.id}}">
+    <article style="display:inline">
       <h2>{{pr?.descrizione}}</h2>
-      <p>ultimo Pr: <strong>${{pr?.getLastPr()?.stringifiedDate}}</strong></p>
-      <p>Risultato: <strong>{{pr?.getLastPr()?.prestazione }}{{pr.unity}}</strong></p>
+      <p class="text-left"> <strong>{{pr?.getLastPr()?.stringifiedDate}}</strong></p>
+      <p class="text-right"> <strong>{{pr?.getLastPr()?.prestazione }}{{pr.unity}}</strong></p>
+    </article>
     </ion-item>
   </ion-list>
 </ion-content>

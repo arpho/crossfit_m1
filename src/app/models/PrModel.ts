@@ -91,8 +91,14 @@ export class PrModel {
     }
 
     getLastPr() {
+        console.log('getting last pr');
         if (this.prList && this.prList.length > 0) {
-            return this.prList.reduce((max, p) => p.date > max.date ? p : max);
+            const last = Math.max.apply(null, this.prList.map((item: ResultModel) => {
+                console.log(item.stringifiedDate, item, new Date(item.stringifiedDate),last);
+                return new Date(item.stringifiedDate);
+            }));
+        //console.log('last', last);
+        return last;//this.prList.reduce((max, p) => new Date(p.date) > new Date(max.date) ? p : max);
         }
     }
 
