@@ -9,7 +9,7 @@ import { PrModel, PrKg, PrTime } from '../../models/PrModel';
   styleUrls: ['./pr-detail.page.scss'],
 })
 export class PrDetailPage implements OnInit {
-  public currentPr: PrModel = new PrModel();
+  public currentPr: PrKg | PrTime;
 
   constructor(
     private prService: PrService,
@@ -21,9 +21,9 @@ export class PrDetailPage implements OnInit {
     this.prService.getPr(prId).on('value', prsnapshot => {
       this.currentPr = prsnapshot.val().unity === ' Kg ' ? new PrKg : new PrTime();
       this.currentPr.loadPr(prsnapshot.val());
-      console.log(this.currentPr.getLastPr());
       this.currentPr.id = prsnapshot.key;
-      console.log(this.currentPr.getLastPr());
+      console.log('currentPr', this.currentPr);
+      console.log('last pr', this.currentPr.getLastPr());
     });
   }
 

@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar>
-  <ion-buttons slot="start">
-  <ion-back-button></ion-back-button>
-  </ion-buttons>
+  
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/pr-list"></ion-back-button>
+    </ion-buttons>
   <ion-title>{{currentPr?.descrizione}}</ion-title>
   </ion-toolbar>
   </ion-header>
@@ -11,14 +12,30 @@
 
 
   <ion-content padding>
-    <ion-card>
-    <ion-card-content>
-    <p>Pr
-    <!--strong>{{currentPr?}}</strong-->
-    </p>
-    <p>Date:
-    <!--strong>{{currentEvent?.date}}</strong-->
-    </p>
-    </ion-card-content>
-    </ion-card>
+      <ion-card>
+      <ion-card-content>
+        <p>Ultimo</p>
+      <p>pr 
+      <strong>{{currentPr?.getLastPr()?.prestazione}}{{currentPr?.unity}}</strong>
+      </p>
+      <p>Data:
+      <strong>{{currentPr?.getLastPr()?.stringifiedDate}}</strong>
+      </p>
+      </ion-card-content>
+      </ion-card>
+      <ion-card>
+      <ion-card-content>
+        <p>Migliore</p>
+      <p>pr 
+      <strong>{{currentPr?.getBestPr()?.prestazione}}{{currentPr?.unity}}</strong>
+      </p>
+      <p>Data:
+      <strong>{{currentPr?.getBestPr()?.stringifiedDate}}</strong>
+      </p>
+      </ion-card-content>
+      </ion-card>
+      <ion-fab bottom   right >
+          <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
+        </ion-fab>
+       
     </ion-content>

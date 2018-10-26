@@ -88,19 +88,32 @@ export class PrModel {
         this.girl = pr.girl;
         this.hero = pr.hero;
         this.id = pr.id;
+        this.prList = pr.prList;
     }
 
-    getLastPr() {
+    getLastPrNew() {
         console.log('getting last pr');
         if (this.prList && this.prList.length > 0) {
             const last = Math.max.apply(null, this.prList.map((item: ResultModel) => {
-                console.log(item.stringifiedDate, item, new Date(item.stringifiedDate),last);
+                console.log(item.stringifiedDate, item, new Date(item.stringifiedDate), last);
                 return new Date(item.stringifiedDate);
             }));
-        //console.log('last', last);
-        return last;//this.prList.reduce((max, p) => new Date(p.date) > new Date(max.date) ? p : max);
+            return last;
+
         }
     }
+
+
+    getLastPr() {
+        if (this.prList && this.prList.length > 0) {
+            return this.prList.reduce((max, p) => {
+                console.log('max', max);
+                console.log('p', p);
+                return new Date(p.date) > new Date(max.date) ? p : max;
+            });
+        }
+    }
+
 
     constructor(
         Descrizione?: String,
@@ -133,14 +146,14 @@ export class PrModel {
     }
 
     getLast(): ResultModel {
-        if (this.prList) {
+        if (this.prList && this.prList.length > 0) {
             return this.prList.reduce((prev: ResultModel, current: ResultModel) =>
                 (prev.date.getTime() > current.date.getTime()) ? prev : current);
         }
     }
 }
 interface BestInterface {
-    getBest(): ResultModel;
+    getBestPr(): ResultModel;
 }
 export class PrTime extends PrModel implements BestInterface {
     constructor(
@@ -163,7 +176,7 @@ export class PrTime extends PrModel implements BestInterface {
     }
 
 
-    getBest() {
+    getBestPr() {
         return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione < current.prestazione) ? prev : current);
     }
 }
@@ -186,7 +199,7 @@ export class PrKg extends PrModel implements BestInterface {
         return sec;
     }
 
-    getBest() {
+    getBestPr() {
         return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione > current.prestazione) ? prev : current);
     }
 }
