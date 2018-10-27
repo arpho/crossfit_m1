@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrService } from '../../services/pr/pr.service';
-import { PrModel, PrKg, PrTime } from '../../models/PrModel';
+import { PrModel, PrKg, PrTime, BestInterface } from '../../models/PrModel';
 
 @Component({
   selector: 'app-pr-detail',
@@ -9,7 +9,7 @@ import { PrModel, PrKg, PrTime } from '../../models/PrModel';
   styleUrls: ['./pr-detail.page.scss'],
 })
 export class PrDetailPage implements OnInit {
-  public currentPr: PrKg | PrTime;
+  public currentPr: BestInterface;
 
   constructor(
     private prService: PrService,

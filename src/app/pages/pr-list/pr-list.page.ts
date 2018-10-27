@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PrService } from '../../services/pr/pr.service';
-import { PrModel, ResultModel, PrKg, PrTime } from '../../models/PrModel';
+import { PrModel, ResultModel, PrKg, PrTime, BestInterface } from '../../models/PrModel';
 
 
 @Component({
@@ -9,7 +9,7 @@ import { PrModel, ResultModel, PrKg, PrTime } from '../../models/PrModel';
   styleUrls: ['./pr-list.page.scss'],
 })
 export class PrListPage implements OnInit {
-  public prList: Array<PrModel>;
+  public prList: Array<BestInterface>;
 
   constructor(public prService: PrService) { }
 

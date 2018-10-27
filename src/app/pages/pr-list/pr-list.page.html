@@ -14,7 +14,7 @@
     <ion-card-content >
       <h2>{{pr?.descrizione}}</h2>
       <p class="text-left"> <strong>{{pr?.getLastPr()?.stringifiedDate}}</strong></p>
-      <p class="text-right"> <strong>{{pr?.getLastPr()?.prestazione }}{{pr.unity}}</strong></p>
+      <p class="text-right"> <strong>{{pr.formatResult(pr.getLastPr()) }}</strong></p>
     </ion-card-content>
     </ion-item>
   </ion-list>

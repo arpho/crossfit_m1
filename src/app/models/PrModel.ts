@@ -78,8 +78,22 @@ export class PrModel {
     public girl: boolean;
     public hero: boolean;
 
+    formatResult(pr: ResultModel): string {
+        return 'to be implemented';
+    }
+
     cloneOtherModel(): PrModel {
         return this;
+    }
+    convertSeconds(sec: number): string {
+        const hrs = Math.floor(sec / 3600);
+        const min = Math.floor((sec - (hrs * 3600)) / 60);
+        let seconds = sec - (hrs * 3600) - (min * 60);
+        seconds = Math.round(seconds * 100) / 100;
+        let result = (hrs < 10 ? '0' + String(hrs) : String(hrs));
+        result += ':' + (min < 10 ? '0' + String(min) : String(min));
+        result += ':' + (seconds < 10 ? '0' + String(seconds) : String(seconds));
+        return result;
     }
 
     loadPr(pr: any) {
@@ -152,8 +166,12 @@ export class PrModel {
         }
     }
 }
-interface BestInterface {
+export interface BestInterface {
+    id: String;
     getBestPr(): ResultModel;
+    loadPr(any);
+    getLastPr(): ResultModel;
+    formatResult(pr: ResultModel): string | number;
 }
 export class PrTime extends PrModel implements BestInterface {
     constructor(
@@ -162,6 +180,10 @@ export class PrTime extends PrModel implements BestInterface {
         TypePr?: PrType
     ) {
         super(Descrizione, ' sec ', PrList, TypePr);
+    }
+
+    formatResult(pr: ResultModel) {
+        return this.convertSeconds(pr.prestazione);
     }
 
 
@@ -187,6 +209,9 @@ export class PrKg extends PrModel implements BestInterface {
         TypePr?: PrType
     ) {
         super(Descrizione, ' Kg ', PrList, TypePr);
+    }
+    formatResult(pr: ResultModel) {
+        return String(pr.prestazione) + this.unity;
     }
 
     cloneOtherModel(): PrModel {
