@@ -15,8 +15,8 @@
       <ion-card>
       <ion-card-content>
         <p>Ultimo</p>
-      <p>pr 
-      <strong>{{currentPr?.getLastPr()?.prestazione}}{{currentPr?.unity}}</strong>
+      <p>pr: 
+      <strong>{{currentPr.formatResult(currentPr?.getLastPr())}}</strong>
       </p>
       <p>Data:
       <strong>{{currentPr?.getLastPr()?.stringifiedDate}}</strong>
@@ -26,8 +26,8 @@
       <ion-card>
       <ion-card-content>
         <p>Migliore</p>
-      <p>pr 
-      <strong>{{currentPr?.getBestPr()?.prestazione}}{{currentPr?.unity}}</strong>
+      <p>pr :
+      <strong>{{currentPr.formatResult(currentPr?.getBestPr())}}</strong>
       </p>
       <p>Data:
       <strong>{{currentPr?.getBestPr()?.stringifiedDate}}</strong>
