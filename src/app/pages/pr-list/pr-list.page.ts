@@ -16,6 +16,9 @@ export class PrListPage implements OnInit {
   ngOnInit() {
     this.ionViewDidLoad();
   }
+  showResult(pr: BestInterface) {
+    return pr.formatResult(pr.getLastPr());
+  }
 
   ionViewDidLoad() {
     this.prService.getPrList().on('value', eventListSnapshot => {
@@ -23,7 +26,9 @@ export class PrListPage implements OnInit {
       eventListSnapshot.forEach(snap => {
         const Pr = snap.val().unity === ' Kg ' ? new PrKg() : new PrTime();
         Pr.descrizione = snap.val().descrizione;
-        Pr.prList = snap.val().prList;
+        Pr.prList = snap.val().prList.map(value => { const i = new ResultModel().load(value);
+          return i;
+        });
         Pr.hero = snap.val().hero || false;
         Pr.girl = snap.val().girl || false;
         Pr.typePr = snap.val().typePr;

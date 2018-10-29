@@ -6,12 +6,30 @@ export class ResultModel implements ItemInterface {
     public prestazione: number;
     constructor(
         Id?: Number,
-        date?: Date,
         Prestazione?: number,
+        StringifiedDate?: string
     ) {
         this.id = Id;
-        this.date = date || new Date();
+        this.date = new Date();
+        this.stringifiedDate = StringifiedDate;
         this.prestazione = Prestazione;
+
+    }
+    load(item: any) {
+        this.id = item.id;
+        this.prestazione = item.prestazione;
+        this.stringifiedDate = item.stringifiedDate;
+        return this;
+    }
+
+    getSeconds() {
+        const sec = this.prestazione % 60;
+        return sec < 10 ? '0' + String(sec) : String(sec);
+    }
+
+    getMinutes() {
+        const minutes = Math.floor(this.prestazione / 60);
+        return minutes < 10 ? '0' + String(minutes) : String(minutes);
     }
 
     getValue0() {
@@ -78,9 +96,6 @@ export class PrModel {
     public girl: boolean;
     public hero: boolean;
 
-    formatResult(pr: ResultModel): string {
-        return 'to be implemented';
-    }
 
     cloneOtherModel(): PrModel {
         return this;
@@ -102,7 +117,10 @@ export class PrModel {
         this.girl = pr.girl;
         this.hero = pr.hero;
         this.id = pr.id;
-        this.prList = pr.prList;
+        this.prList = pr.prList.map(value => {
+            const i = new ResultModel().load(value);
+            return i;
+        });
     }
 
     getLastPrNew() {
@@ -183,7 +201,10 @@ export class PrTime extends PrModel implements BestInterface {
     }
 
     formatResult(pr: ResultModel) {
-        return this.convertSeconds(pr.prestazione);
+
+
+       return  pr.getMinutes() + ':' + pr.getSeconds();
+       // return this.convertSeconds(pr.prestazione);
     }
 
 

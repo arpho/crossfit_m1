@@ -16,6 +16,10 @@ export class PrDetailPage implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+  showBestResult() {
+    return this.currentPr.formatResult(this.currentPr.getBestPr());
+  }
+
   ngOnInit() {
     const prId: string = this.route.snapshot.paramMap.get('id');
     this.prService.getPr(prId).on('value', prsnapshot => {
