@@ -26,8 +26,6 @@ export class PrDetailPage implements OnInit {
       this.currentPr = prsnapshot.val().unity === ' Kg ' ? new PrKg : new PrTime();
       this.currentPr.loadPr(prsnapshot.val());
       this.currentPr.id = prsnapshot.key;
-      console.log('currentPr', this.currentPr);
-      console.log('last pr', this.currentPr.getLastPr());
     });
   }
 
