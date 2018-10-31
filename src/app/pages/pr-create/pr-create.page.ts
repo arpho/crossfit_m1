@@ -68,28 +68,13 @@ export class PrCreatePage implements OnInit {
   async addResult(): Promise<void> {
     console.log(this.prType);
     const result = new ResultModel();
-    const alert = await this.alertCtrl.create({
-      subHeader: 'Il tuo nuovo Pr',
-      inputs: [{
-        type: 'number',
-        placeholder: 'risultato',
-        label: this.Pr.unity
-      },
-      {
-        type: 'date',
-        placeholder: 'data',
-        value: this.formatDate(result.date)
-      }],
-      buttons: [{ text: 'Annulla' }, {
-        text: 'Ok',
-        handler: data => {
-          result.prestazione = data[0];
-          result.date = new Date(data[1]);
-          result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
-          this.Pr.pushPr(result);
-        }
-      }]
-    });
+    const  popup = this.Pr.getInsertPrPopup(data => {
+      result.prestazione = data[0];
+      result.date = new Date(data[1]);
+      result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
+      this.Pr.pushPr(result);
+    }, this.Pr, result);
+    const alert = await this.alertCtrl.create(popup);
     await alert.present();
   }
 

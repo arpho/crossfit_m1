@@ -14,5 +14,10 @@ export class UtilitiesService {
     return NormalizedDate;
   }
 
+
+  formatDate(data: Date) {
+    return data.toISOString().substring(0, 10);
+  }
+
   constructor() { }
 }

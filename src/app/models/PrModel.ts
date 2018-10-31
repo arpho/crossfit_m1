@@ -1,4 +1,5 @@
 import { ItemInterface, Value } from '../modules/item-module/models/itemInterface';
+import {UtilitiesService} from '../services/utilities/utilities.service';
 export class ResultModel implements ItemInterface {
     public id: Number;
     public date: Date;
@@ -96,6 +97,27 @@ export class PrModel {
     public girl: boolean;
     public hero: boolean;
 
+    getInsertPrPopup(action,
+        Pr: PrModel, result: ResultModel) {
+            const utilities = new UtilitiesService();
+        return {
+            subHeader: 'Il tuo nuovo Pr',
+            inputs: [{
+                type: 'number',
+                placeholder: 'risultato',
+                label: Pr.unity
+            },
+            {
+                type: 'date',
+                placeholder: 'data',
+                value: utilities.formatDate(result.date)
+            }],
+            buttons: [{ text: 'Annulla' }, {
+                text: 'Ok',
+                handler:  action
+            }]
+        };
+    }
 
     cloneOtherModel(): PrModel {
         return this;
@@ -203,8 +225,8 @@ export class PrTime extends PrModel implements BestInterface {
     formatResult(pr: ResultModel) {
 
 
-       return  pr.getMinutes() + ':' + pr.getSeconds();
-       // return this.convertSeconds(pr.prestazione);
+        return pr.getMinutes() + ':' + pr.getSeconds();
+        // return this.convertSeconds(pr.prestazione);
     }
 
 
