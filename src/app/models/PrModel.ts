@@ -98,6 +98,10 @@ export class PrModel {
     public girl: boolean;
     public hero: boolean;
 
+    formatResult(pr: ResultModel): String {
+        return String(pr.prestazione);
+    }
+
     getInsertPrPopup(result: ResultModel): AlertOptions {
         const utilities = new UtilitiesService();
         return {
@@ -289,6 +293,7 @@ export class PrKg extends PrModel implements BestInterface {
     ) {
         super(Descrizione, ' Kg ', PrList, TypePr);
     }
+
     formatResult(pr: ResultModel) {
         return String(pr.prestazione) + this.unity;
     }

@@ -50,6 +50,11 @@ export class PrCreatePage implements OnInit {
       this.Pr.girl = false;
     }
   }
+
+  showResult(pr: ResultModel) {
+    return this.Pr.formatResult(pr);
+  }
+
   changeGirl() {
     this.Pr = this.Pr.cloneOtherModel();
     if (this.Pr.hero && this.Pr.girl) {
@@ -69,7 +74,7 @@ export class PrCreatePage implements OnInit {
   async addResult(): Promise<void> {
     console.log(this.prType);
     const result = new ResultModel();
-    const popup = this.Pr.getInsertPrPopup( result);
+    const popup = this.Pr.getInsertPrPopup(result);
     const alert = await this.alertCtrl.create(popup);
     await alert.present();
   }
