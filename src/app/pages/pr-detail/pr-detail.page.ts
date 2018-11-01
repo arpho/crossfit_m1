@@ -18,11 +18,20 @@ export class PrDetailPage implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
+  updateResult() {
+    console.log('updating', this.currentPr);
+    this.prService.updatePr(this.currentPr).then(v => console.log('updated', v));
+  }
+
   showBestResult() {
-    return this.currentPr.formatResult(this.currentPr.getBestPr());
+    if (this.currentPr) {
+      return this.currentPr.formatResult(this.currentPr.getBestPr());
+    }
   }
   showLastResult() {
-    return this.currentPr.formatResult(this.currentPr.getLastPr());
+    if (this.currentPr) {
+      return this.currentPr.formatResult(this.currentPr.getLastPr());
+    }
   }
 
   ngOnInit() {

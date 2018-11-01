@@ -215,7 +215,7 @@ export class PrModel {
     }
 }
 export interface BestInterface {
-    id: String;
+    id: string;
     getBestPr(): ResultModel;
     loadPr(any);
     getLastPr(): ResultModel;

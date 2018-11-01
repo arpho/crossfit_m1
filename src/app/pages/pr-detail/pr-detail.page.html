@@ -19,7 +19,7 @@
       <strong>{{showLastResult()}}</strong>
       </p>
       <p>Data:
-      <strong>{{currentPr?.getLastPr()?.stringifiedDate}}</strong>
+      <strong>{{showLastResult()}}</strong>
       </p>
       </ion-card-content>
       </ion-card>
@@ -35,5 +35,7 @@
       </ion-card-content>
       </ion-card>
       <ion-button expand="block" (click)="addResult()" ion-fab color="primary">Aggiungi pr<ion-icon name="add"></ion-icon></ion-button>
+       
+      <ion-button expand="block" (click)="updateResult()" ion-fab color="primary">Modifica pr<ion-icon name="create"></ion-icon></ion-button>
        
     </ion-content>

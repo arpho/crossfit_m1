@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { ResultModel, PrModel } from '../../models/PrModel';
+import { ResultModel, PrModel, BestInterface } from '../../models/PrModel';
 
 @Injectable({
   providedIn: 'root'
@@ -45,8 +45,13 @@ export class PrService {
   getEventDetail(eventId: string): firebase.database.Reference {
     return this.eventListRef.child(eventId);
   }
+
   getPr(prId: string): firebase.database.Reference {
     return this.prListRef.child(prId);
+  }
+
+  updatePr(pr: BestInterface) {
+    return this.prListRef.child(pr.id).update(pr);
   }
 
 }
