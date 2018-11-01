@@ -1,5 +1,6 @@
 import { ItemInterface, Value } from '../modules/item-module/models/itemInterface';
 import {UtilitiesService} from '../services/utilities/utilities.service';
+import { AlertOptions } from '@ionic/core';
 export class ResultModel implements ItemInterface {
     public id: Number;
     public date: Date;
@@ -97,26 +98,30 @@ export class PrModel {
     public girl: boolean;
     public hero: boolean;
 
-    getInsertPrPopup(action,
-        Pr: PrModel, result: ResultModel) {
+    getInsertPrPopup( result: ResultModel): AlertOptions {
             const utilities = new UtilitiesService();
         return {
             subHeader: 'Il tuo nuovo Pr',
             inputs: [{
-                type: 'number',
-                placeholder: 'risultato',
-                label: Pr.unity
+              type: 'number',
+              placeholder: 'risultato',
+              label: this.unity
             },
             {
-                type: 'date',
-                placeholder: 'data',
-                value: utilities.formatDate(result.date)
+              type: 'date',
+              placeholder: 'data',
+              value: utilities.formatDate(result.date)
             }],
             buttons: [{ text: 'Annulla' }, {
-                text: 'Ok',
-                handler:  action
+              text: 'Ok',
+              handler: data => {
+                result.prestazione = data[0];
+                result.date = new Date(data[1]);
+                result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
+                this.pushPr(result);
+              }
             }]
-        };
+          };
     }
 
     cloneOtherModel(): PrModel {

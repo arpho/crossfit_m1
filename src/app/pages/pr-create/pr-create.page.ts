@@ -15,6 +15,7 @@ export class PrCreatePage implements OnInit {
   public prType: boolean;
   public PrIconType: string;
   public prName: string;
+  public utilities: UtilitiesService;
 
   constructor(public alertCtrl: AlertController,
     public Utilities: UtilitiesService,
@@ -68,12 +69,7 @@ export class PrCreatePage implements OnInit {
   async addResult(): Promise<void> {
     console.log(this.prType);
     const result = new ResultModel();
-    const  popup = this.Pr.getInsertPrPopup(data => {
-      result.prestazione = data[0];
-      result.date = new Date(data[1]);
-      result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
-      this.Pr.pushPr(result);
-    }, this.Pr, result);
+    const popup = this.Pr.getInsertPrPopup( result);
     const alert = await this.alertCtrl.create(popup);
     await alert.present();
   }
