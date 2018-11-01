@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <meta name="theme-color" content="#317EFB"/>
   <meta charset="utf-8">
   <title>Crossfit M1</title>
 
@@ -16,6 +17,14 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
+  <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.error('Error', err));
+      }
+    </script>
+    <link rel="manifest" href="/src/manifest.json">
 </head>
 <body>
   <app-root></app-root>

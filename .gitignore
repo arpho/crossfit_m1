@@ -30,3 +30,5 @@ UserInterfaceState.xcuserstate
 src/app/configs/configs.ts
 src/app/configs/configurations.ts
 node_modules
+
+src/theme/
