@@ -1,5 +1,5 @@
 import { ItemInterface, Value } from '../modules/item-module/models/itemInterface';
-import {UtilitiesService} from '../services/utilities/utilities.service';
+import { UtilitiesService } from '../services/utilities/utilities.service';
 import { AlertOptions } from '@ionic/core';
 export class ResultModel implements ItemInterface {
     public id: Number;
@@ -98,30 +98,30 @@ export class PrModel {
     public girl: boolean;
     public hero: boolean;
 
-    getInsertPrPopup( result: ResultModel): AlertOptions {
-            const utilities = new UtilitiesService();
+    getInsertPrPopup(result: ResultModel): AlertOptions {
+        const utilities = new UtilitiesService();
         return {
             subHeader: 'Il tuo nuovo Pr',
             inputs: [{
-              type: 'number',
-              placeholder: 'risultato',
-              label: this.unity
+                type: 'number',
+                placeholder: 'risultato',
+                label: this.unity
             },
             {
-              type: 'date',
-              placeholder: 'data',
-              value: utilities.formatDate(result.date)
+                type: 'date',
+                placeholder: 'data',
+                value: utilities.formatDate(result.date)
             }],
             buttons: [{ text: 'Annulla' }, {
-              text: 'Ok',
-              handler: data => {
-                result.prestazione = data[0];
-                result.date = new Date(data[1]);
-                result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
-                this.pushPr(result);
-              }
+                text: 'Ok',
+                handler: data => {
+                    result.prestazione = data[0];
+                    result.date = new Date(data[1]);
+                    result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
+                    this.pushPr(result);
+                }
             }]
-          };
+        };
     }
 
     cloneOtherModel(): PrModel {
@@ -234,6 +234,37 @@ export class PrTime extends PrModel implements BestInterface {
         // return this.convertSeconds(pr.prestazione);
     }
 
+
+    getInsertPrPopup(result: ResultModel): AlertOptions {
+        const utilities = new UtilitiesService();
+        return {
+            subHeader: 'Il tuo nuovo  tempo Pr',
+            inputs: [{
+                type: 'number',
+                placeholder: 'minuti',
+                label: this.unity
+            },
+            {
+                type: 'number',
+                placeholder: 'secondi',
+                label: this.unity
+            },
+            {
+                type: 'date',
+                placeholder: 'data',
+                value: utilities.formatDate(result.date)
+            }],
+            buttons: [{ text: 'Annulla' }, {
+                text: 'Ok',
+                handler: data => {
+                    result.prestazione = Number(data[0] * 60) + Number(data[1]);
+                    result.date = new Date(data[2]);
+                    result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
+                    this.pushPr(result);
+                }
+            }]
+        };
+    }
 
     cloneOtherModel(): PrModel {
         const sec = new PrKg();
