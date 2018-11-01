@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PrService } from '../../services/pr/pr.service';
-import { PrModel, PrKg, PrTime, BestInterface } from '../../models/PrModel';
+import { AlertController } from '@ionic/angular';
+import { PrModel, PrKg, PrTime, BestInterface, ResultModel } from '../../models/PrModel';
 
 @Component({
   selector: 'app-pr-detail',
@@ -12,6 +13,7 @@ export class PrDetailPage implements OnInit {
   public currentPr: BestInterface;
 
   constructor(
+    public alertCtrl: AlertController,
     private prService: PrService,
     private route: ActivatedRoute,
   ) { }
@@ -27,6 +29,13 @@ export class PrDetailPage implements OnInit {
       this.currentPr.loadPr(prsnapshot.val());
       this.currentPr.id = prsnapshot.key;
     });
+  }
+
+  async addResult(): Promise<void> {
+    const result = new ResultModel();
+    const popup = this.currentPr.getInsertPrPopup(result);
+    const alert = await this.alertCtrl.create(popup);
+    await alert.present();
   }
 
 }

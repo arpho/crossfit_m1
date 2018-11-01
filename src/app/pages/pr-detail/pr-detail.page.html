@@ -16,7 +16,7 @@
       <ion-card-content>
         <p>Ultimo</p>
       <p>pr: 
-      <strong>{{currentPr.formatResult(currentPr?.getLastPr())}}</strong>
+      <strong>{{currentPr?.formatResult(currentPr?.getLastPr())}}</strong>
       </p>
       <p>Data:
       <strong>{{currentPr?.getLastPr()?.stringifiedDate}}</strong>
@@ -34,8 +34,6 @@
       </p>
       </ion-card-content>
       </ion-card>
-      <ion-fab bottom   right >
-          <button ion-fab color="primary"><ion-icon name="add"></ion-icon></button>
-        </ion-fab>
+      <ion-button expand="block" (click)="addResult()" ion-fab color="primary">Aggiungi pr<ion-icon name="add"></ion-icon></ion-button>
        
     </ion-content>

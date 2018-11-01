@@ -170,8 +170,6 @@ export class PrModel {
     getLastPr() {
         if (this.prList && this.prList.length > 0) {
             return this.prList.reduce((max, p) => {
-                console.log('max', max);
-                console.log('p', p);
                 return new Date(p.date) > new Date(max.date) ? p : max;
             });
         }
@@ -220,6 +218,7 @@ export interface BestInterface {
     getBestPr(): ResultModel;
     loadPr(any);
     getLastPr(): ResultModel;
+    getInsertPrPopup(result: ResultModel): AlertOptions;
     formatResult(pr: ResultModel): string | number;
 }
 export class PrTime extends PrModel implements BestInterface {
