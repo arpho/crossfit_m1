@@ -21,6 +21,7 @@ export class ResultModel implements ItemInterface {
         this.id = item.id;
         this.prestazione = item.prestazione;
         this.stringifiedDate = item.stringifiedDate;
+        this.date = new Date(this.stringifiedDate);
         return this;
     }
 
@@ -264,6 +265,12 @@ export class PrTime extends PrModel implements BestInterface {
                     result.date = new Date(data[2]);
                     result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
                     this.pushPr(result);
+                    const last = this.getLastPr();
+                    console.log('just inserted', result);
+                    console.log('just inserted', new Date(result.date));
+                    console.log('last pr', last);
+                    console.log('last pr', new Date(last.date));
+                    console.log(this.prList);
                 }
             }]
         };

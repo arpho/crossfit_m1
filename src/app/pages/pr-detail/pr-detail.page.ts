@@ -21,6 +21,9 @@ export class PrDetailPage implements OnInit {
   showBestResult() {
     return this.currentPr.formatResult(this.currentPr.getBestPr());
   }
+  showLastResult() {
+    return this.currentPr.formatResult(this.currentPr.getLastPr());
+  }
 
   ngOnInit() {
     const prId: string = this.route.snapshot.paramMap.get('id');
@@ -36,6 +39,7 @@ export class PrDetailPage implements OnInit {
     const popup = this.currentPr.getInsertPrPopup(result);
     const alert = await this.alertCtrl.create(popup);
     await alert.present();
+    console.log('new pr', this.currentPr.getLastPr());
   }
 
 }
