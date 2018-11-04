@@ -25,6 +25,7 @@ export class PrDetailPage implements OnInit {
 
   showBestResult() {
     if (this.currentPr) {
+      console.log(this.currentPr)
       return this.currentPr.formatResult(this.currentPr.getBestPr());
     }
   }

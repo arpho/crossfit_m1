@@ -130,7 +130,13 @@ export class PrModel {
     }
 
     cloneOtherModel(): PrModel {
-        return this;
+        const sec = new PrTime();
+        sec.descrizione = this.descrizione;
+        sec.prList = this.prList;
+        sec.typePr = this.typePr;
+        sec.hero = this.hero;
+        sec.girl = this.girl;
+        return sec;
     }
     convertSeconds(sec: number): string {
         const hrs = Math.floor(sec / 3600);
