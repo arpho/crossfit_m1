@@ -98,6 +98,19 @@ export class PrModel {
     public typePr: PrType;
     public girl: boolean;
     public hero: boolean;
+    public icon: string;
+
+    icon2Show(): string {
+        let icon = 'pr';
+        if (this.girl) {
+            icon = 'girl';
+        }
+        if (this.hero) {
+            icon = 'hero';
+        }
+        return icon;
+    }
+
 
     formatResult(pr: ResultModel): String {
         return String(pr.prestazione);
@@ -304,6 +317,7 @@ export class PrKg extends PrModel implements BestInterface {
         TypePr?: PrType
     ) {
         super(Descrizione, ' Kg ', PrList, TypePr);
+
     }
 
     formatResult(pr: ResultModel) {

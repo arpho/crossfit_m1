@@ -26,13 +26,20 @@ export class PrListPage implements OnInit {
       eventListSnapshot.forEach(snap => {
         const Pr = snap.val().unity === ' Kg ' ? new PrKg() : new PrTime();
         Pr.descrizione = snap.val().descrizione;
-        Pr.prList = snap.val().prList.map(value => { const i = new ResultModel().load(value);
+        Pr.prList = snap.val().prList.map(value => {
+          const i = new ResultModel().load(value);
           return i;
         });
         Pr.hero = snap.val().hero || false;
         Pr.girl = snap.val().girl || false;
         Pr.typePr = snap.val().typePr;
         Pr.id = snap.key;
+        if (Pr.hero) {
+          Pr.icon = 'assets/icon/hero.ico';
+        }
+        if (Pr.girl) {
+          Pr.icon = 'assets/icon/girl.png';
+        }
         /*this.prList.push({
         id: snap.key,
         descrizione: snap.val().descrizione

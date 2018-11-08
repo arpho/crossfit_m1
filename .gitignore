@@ -32,3 +32,5 @@ src/app/configs/configurations.ts
 node_modules
 
 src/theme/
+
+\.firebase/
