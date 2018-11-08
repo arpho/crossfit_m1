@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PrService } from '../../services/pr/pr.service';
 import { AlertController } from '@ionic/angular';
 import { PrModel, PrKg, PrTime, BestInterface, ResultModel } from '../../models/PrModel';
@@ -16,16 +16,21 @@ export class PrDetailPage implements OnInit {
     public alertCtrl: AlertController,
     private prService: PrService,
     private route: ActivatedRoute,
+    public router: Router
   ) { }
 
   updateResult() {
     console.log('updating', this.currentPr);
     this.prService.updatePr(this.currentPr).then(v => console.log('updated', v));
+
+  }
+
+  gotoPercentages() {
+     this.router.navigate([`/show-percentages/${this.currentPr.id}`] );
   }
 
   showBestResult() {
     if (this.currentPr) {
-      console.log(this.currentPr)
       return this.currentPr.formatResult(this.currentPr.getBestPr());
     }
   }

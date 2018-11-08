@@ -11,8 +11,9 @@
   <ion-list>
     <ion-item tappable *ngFor="let pr of prList" 
     routerLink="/pr-detail/{{pr.id}}">
+    <img src={{pr.icon}}  >
     <ion-card-content >
-      <h2>{{pr?.descrizione}}<img src={{pr.icon}}  ></h2>
+      <h2>{{pr?.descrizione}}</h2>
        
   
       <p class="text-left"> <strong>{{pr?.getLastPr()?.stringifiedDate}}</strong></p>
