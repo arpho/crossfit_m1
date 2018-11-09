@@ -27,6 +27,8 @@ export class ShowPercentagesPage implements OnInit {
       this.currentPr.loadPr(prsnapshot.val());
       this.currentPr.id = prsnapshot.key;
     console.log(this.currentPr);
+    const result = this.route.snapshot.paramMap.get('result');
+    console.log(result);
   });
 
 }

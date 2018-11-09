@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'pr-detail/:id', loadChildren: './pages/pr-detail/pr-detail.module#PrDetailPageModule', canActivate: [AuthGuard] },
   { path: 'pr-list', loadChildren: './pages/pr-list/pr-list.module#PrListPageModule', canActivate: [AuthGuard] },
   {
-    path: 'show-percentages/:id', loadChildren: './pages/show-percentages/show-percentages.module#ShowPercentagesPageModule',
+    path: 'show-percentages/:id/:result', loadChildren: './pages/show-percentages/show-percentages.module#ShowPercentagesPageModule',
     canActivate: [AuthGuard]
   }
 ];

@@ -25,8 +25,15 @@ export class PrDetailPage implements OnInit {
 
   }
 
-  gotoPercentages() {
-     this.router.navigate([`/show-percentages/${this.currentPr.id}`] );
+  gotoLastPercentages() {
+    const result = this.currentPr.getLastPr().prestazione;
+    console.log('percentage', result);
+    this.router.navigate([`/show-percentages/${this.currentPr.id}`]);
+  }
+  gotoBestPercentages() {
+    const result = this.currentPr.getBestPr().prestazione;
+    console.log('best', result);
+    this.router.navigate(['/show-percentages', this.currentPr.id, result]);
   }
 
   showBestResult() {
