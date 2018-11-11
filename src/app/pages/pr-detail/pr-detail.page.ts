@@ -28,7 +28,7 @@ export class PrDetailPage implements OnInit {
   gotoLastPercentages() {
     const result = this.currentPr.getLastPr().prestazione;
     console.log('percentage', result);
-    this.router.navigate([`/show-percentages/${this.currentPr.id}`]);
+    this.router.navigate(['/show-percentages', this.currentPr.id, result]);
   }
   gotoBestPercentages() {
     const result = this.currentPr.getBestPr().prestazione;

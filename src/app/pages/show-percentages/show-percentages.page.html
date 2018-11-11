@@ -10,4 +10,10 @@
 
 <ion-content padding>
 
+    <ion-item  *ngFor="let percentage of percentages" >
+    <ion-card-content >
+        <h2>{{percentage?.key}}</h2>
+        <h2>{{percentage?.value}}{{getUnity()}}</h2>
+      </ion-card-content>
+</ion-item>
 </ion-content>
