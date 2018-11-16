@@ -14,6 +14,7 @@ import { element } from '@angular/core/src/render3/instructions';
 export class PrDetailPage implements OnInit {
   @ViewChild('lineChart') private chartRef;
   chart: any;
+  public spinner: Boolean = true;
 
   public currentPr: BestInterface;
 
@@ -23,7 +24,8 @@ export class PrDetailPage implements OnInit {
     private prService: PrService,
     private route: ActivatedRoute,
     public router: Router,
-  ) { }
+  ) {
+}
 
   updateResult() {
     console.log('updating', this.currentPr);
@@ -93,6 +95,7 @@ export class PrDetailPage implements OnInit {
           }
         }
       });
+      this.spinner = false;
     });
 
   }

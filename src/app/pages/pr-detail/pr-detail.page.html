@@ -12,6 +12,10 @@
 
 
   <ion-content padding>
+      <div class="loader-wrapper" id="loader-1"  [hidden]='!spinner' >
+          <div id="loader"></div>
+          
+      </div>
       <ion-card>
       <ion-card-content (click)="gotoLastPercentages()" >
         <p>Ultimo</p>
