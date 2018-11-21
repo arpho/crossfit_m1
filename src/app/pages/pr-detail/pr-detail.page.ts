@@ -25,7 +25,7 @@ export class PrDetailPage implements OnInit {
     private route: ActivatedRoute,
     public router: Router,
   ) {
-}
+  }
 
   updateResult() {
     console.log('updating', this.currentPr);
@@ -65,8 +65,10 @@ export class PrDetailPage implements OnInit {
       const dataPoints = [];
       const labels = [];
       this.currentPr.prList.forEach(element => {
+        const labelResult = new ResultModel();
+        labelResult.prestazione = element.prestazione;
         dataPoints.push({ x: dataPoints.length, y: element.prestazione });
-        labels.push(element.stringifiedDate);
+        labels.push(element.stringifiedDate + '#' + this.currentPr.formatResult(labelResult));
 
       });
       this.chart = new Chart(this.chartRef.nativeElement, {
@@ -106,6 +108,7 @@ export class PrDetailPage implements OnInit {
     const alert = await this.alertCtrl.create(popup);
     await alert.present();
     console.log('new pr', this.currentPr.getLastPr());
+    this.updateResult();
   }
 
 }
