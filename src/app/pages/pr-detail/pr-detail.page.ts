@@ -27,7 +27,7 @@ export class PrDetailPage implements OnInit {
   ) {
   }
 
-  updateResult() {
+   updateResult() {
     console.log('updating', this.currentPr);
     this.prService.updatePr(this.currentPr).then(v => console.log('updated', v));
 
@@ -64,11 +64,11 @@ export class PrDetailPage implements OnInit {
       this.currentPr.id = prsnapshot.key;
       const dataPoints = [];
       const labels = [];
-      this.currentPr.prList.forEach(element => {
+      this.currentPr.prList.forEach((item: ResultModel) => {
         const labelResult = new ResultModel();
-        labelResult.prestazione = element.prestazione;
-        dataPoints.push({ x: dataPoints.length, y: element.prestazione });
-        labels.push(element.stringifiedDate + '#' + this.currentPr.formatResult(labelResult));
+        labelResult.prestazione = item.prestazione;
+        dataPoints.push({ x: dataPoints.length, y: item.prestazione });
+        labels.push(item.stringifiedDate + '\n#' + this.currentPr.formatResult(labelResult));
 
       });
       this.chart = new Chart(this.chartRef.nativeElement, {
@@ -106,9 +106,8 @@ export class PrDetailPage implements OnInit {
     const result = new ResultModel();
     const popup = this.currentPr.getInsertPrPopup(result);
     const alert = await this.alertCtrl.create(popup);
-    await alert.present();
-    console.log('new pr', this.currentPr.getLastPr());
-    this.updateResult();
+    const value = await alert.present();
+    console.log('await', value);
   }
 
 }
