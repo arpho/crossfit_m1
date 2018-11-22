@@ -27,7 +27,7 @@ export class PrDetailPage implements OnInit {
   ) {
   }
 
-   updateResult() {
+  updateResult() {
     console.log('updating', this.currentPr);
     this.prService.updatePr(this.currentPr).then(v => console.log('updated', v));
 
@@ -68,7 +68,7 @@ export class PrDetailPage implements OnInit {
         const labelResult = new ResultModel();
         labelResult.prestazione = item.prestazione;
         dataPoints.push({ x: dataPoints.length, y: item.prestazione });
-        labels.push(item.stringifiedDate + '\n#' + this.currentPr.formatResult(labelResult));
+        labels.push(item.stringifiedDate + '\n# ' + this.currentPr.format_result_4_label(item.prestazione));
 
       });
       this.chart = new Chart(this.chartRef.nativeElement, {

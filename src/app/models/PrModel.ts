@@ -241,6 +241,7 @@ export interface BestInterface {
     getLastPr(): ResultModel;
     getInsertPrPopup(result: ResultModel): AlertOptions;
     formatResult(pr: ResultModel): string | number;
+    format_result_4_label(prestazione: number): string | number;
 }
 export class PrTime extends PrModel implements BestInterface {
     constructor(
@@ -249,6 +250,12 @@ export class PrTime extends PrModel implements BestInterface {
         TypePr?: PrType
     ) {
         super(Descrizione, ' sec ', PrList, TypePr);
+    }
+
+    format_result_4_label(prestazione: number) {
+        const labelResult = new ResultModel();
+        labelResult.prestazione = prestazione;
+        return this.formatResult(labelResult);
     }
 
     formatResult(pr: ResultModel) {
@@ -315,6 +322,12 @@ export class PrKg extends PrModel implements BestInterface {
     ) {
         super(Descrizione, ' Kg ', PrList, TypePr);
 
+    }
+
+    format_result_4_label(prestazione: number) {
+        const labelResult = new ResultModel();
+        labelResult.prestazione = prestazione;
+        return this.formatResult(labelResult);
     }
 
     formatResult(pr: ResultModel) {
