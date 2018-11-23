@@ -4,6 +4,7 @@ import { AlertOptions } from '@ionic/core';
 export class ResultModel implements ItemInterface {
     public id: Number;
     public date: Date;
+    public note: string;
     public stringifiedDate: string;
     public prestazione: number;
     constructor(
@@ -20,6 +21,9 @@ export class ResultModel implements ItemInterface {
     load(item: any) {
         this.id = item.id;
         this.prestazione = item.prestazione;
+        if (item.note) {
+            this.note = item.note;
+        }
         this.stringifiedDate = item.stringifiedDate;
         this.date = new Date(this.stringifiedDate);
         return this;
@@ -129,12 +133,17 @@ export class PrModel {
                 type: 'date',
                 placeholder: 'data',
                 value: utilities.formatDate(result.date)
+            }, {
+                type: 'text',
+                placeholder: 'vuoi aggiungere un\'annotazione?',
+                value: result.note
             }],
             buttons: [{ text: 'Annulla' }, {
                 text: 'Ok',
                 handler: data => {
                     result.prestazione = data[0];
                     result.date = new Date(data[1]);
+                    result.note = data[2];
                     result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
                     this.pushPr(result);
                     next();
@@ -285,12 +294,17 @@ export class PrTime extends PrModel implements BestInterface {
                 type: 'date',
                 placeholder: 'data',
                 value: utilities.formatDate(result.date)
+            }, {
+                type: 'text',
+                placeholder: 'vuoi aggiungere un\'annotazione?',
+                value: result.note
             }],
             buttons: [{ text: 'Annulla' }, {
                 text: 'Ok',
                 handler: data => {
                     result.prestazione = Number(data[0] * 60) + Number(data[1]);
                     result.date = new Date(data[2]);
+                    result.note = data[3];
                     result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
                     this.pushPr(result);
                     const last = this.getLastPr();
@@ -347,6 +361,6 @@ export class PrKg extends PrModel implements BestInterface {
     }
 
     getBestPr() {
-        return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione > current.prestazione) ? prev : current);
+        return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione >= current.prestazione) ? prev : current);
     }
 }
