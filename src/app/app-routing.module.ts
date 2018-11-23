@@ -25,7 +25,8 @@ const routes: Routes = [
   {
     path: 'show-percentages/:id/:result', loadChildren: './pages/show-percentages/show-percentages.module#ShowPercentagesPageModule',
     canActivate: [AuthGuard]
-  }
+  },
+  { path: 'showResults/:id', loadChildren: './pages/show-results/show-results.module#ShowResultsPageModule', canActivate: [AuthGuard]}
 ];
 
 @NgModule({

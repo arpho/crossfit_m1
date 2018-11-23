@@ -28,8 +28,7 @@ export class PrDetailPage implements OnInit {
   }
 
   updateResult() {
-    console.log('updating', this.currentPr);
-    this.prService.updatePr(this.currentPr).then(v => console.log('updated', v));
+    this.prService.updatePr(this.currentPr);
 
   }
 
@@ -54,6 +53,11 @@ export class PrDetailPage implements OnInit {
     if (this.currentPr) {
       return this.currentPr.formatResult(this.currentPr.getLastPr());
     }
+  }
+
+  show_prs() {
+    console.log('showing prs ');
+    this.router.navigate(['/showResults', this.currentPr.id]);
   }
 
   ngOnInit() {

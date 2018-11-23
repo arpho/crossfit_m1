@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/pr-detail/{{currentPr?.id}}"></ion-back-button>
+        </ion-buttons>
+    <ion-title>lista Pr per {{currentPr?.descrizione}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+      <ion-item-sliding *ngFor="let pr of currentPr?.prList"  #item>
+        <ion-item  >
+        <ion-card-content>
+          <h2>{{currentPr.formatResult(pr)}}</h2>
+           
+          <p class="text-left"> <strong>{{pr?.stringifiedDate}}</strong></p>
+        </ion-card-content>
+        </ion-item>
+        <ion-item-options side="right">
+            <button ion-button (click)="unread(item)">Unread</button>
+          </ion-item-options>
+        </ion-item-sliding>
+        </ion-list>
+</ion-content>
