@@ -50,7 +50,7 @@ export class PrService {
     return this.prListRef.child(prId);
   }
 
-  updatePr(pr: BestInterface) {
+  updatePr(pr: BestInterface | PrModel) {
     return this.prListRef.child(pr.id).update(pr);
   }
 

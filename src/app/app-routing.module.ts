@@ -22,10 +22,8 @@ const routes: Routes = [
   { path: 'pr-create', loadChildren: './pages/pr-create/pr-create.module#PrCreatePageModule', canActivate: [AuthGuard] },
   { path: 'pr-detail/:id', loadChildren: './pages/pr-detail/pr-detail.module#PrDetailPageModule', canActivate: [AuthGuard] },
   { path: 'pr-list', loadChildren: './pages/pr-list/pr-list.module#PrListPageModule', canActivate: [AuthGuard] },
-  {
-    path: 'show-percentages/:id/:result', loadChildren: './pages/show-percentages/show-percentages.module#ShowPercentagesPageModule',
-    canActivate: [AuthGuard]
-  },
+  { path: 'show-percentages/:id/:result',
+   loadChildren: './pages/show-percentages/show-percentages.module#ShowPercentagesPageModule', canActivate: [AuthGuard]},
   { path: 'showResults/:id', loadChildren: './pages/show-results/show-results.module#ShowResultsPageModule', canActivate: [AuthGuard]}
 ];
 

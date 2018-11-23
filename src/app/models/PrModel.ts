@@ -333,7 +333,7 @@ export class PrKg extends PrModel implements BestInterface {
     }
 
     formatResult(pr: ResultModel) {
-        return String(pr.prestazione) + this.unity;
+        return (pr) ? String(pr.prestazione) + this.unity : '';
     }
 
     cloneOtherModel(): PrModel {

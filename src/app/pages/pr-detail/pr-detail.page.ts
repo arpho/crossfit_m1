@@ -15,7 +15,7 @@ export class PrDetailPage implements OnInit {
   @ViewChild('lineChart') private chartRef;
   chart: any;
   public spinner: Boolean = true;
-
+  public prId: string;
   public currentPr: BestInterface;
 
 
@@ -56,13 +56,13 @@ export class PrDetailPage implements OnInit {
   }
 
   show_prs() {
-    console.log('showing prs ');
-    this.router.navigate(['/showResults', this.currentPr.id]);
+    console.log('showing prs for  ', this.prId);
+    this.router.navigate(['/showResults', this.prId]);
   }
 
   ngOnInit() {
-    const prId: string = this.route.snapshot.paramMap.get('id');
-    this.prService.getPr(prId).on('value', prsnapshot => {
+    this.prId = this.route.snapshot.paramMap.get('id');
+    this.prService.getPr(this.prId).on('value', prsnapshot => {
       this.currentPr = prsnapshot.val().unity === ' Kg ' ? new PrKg : new PrTime();
       this.currentPr.loadPr(prsnapshot.val());
       this.currentPr.id = prsnapshot.key;

@@ -73,7 +73,7 @@ export class PrCreatePage implements OnInit {
 
   async addResult(): Promise<void> {
     const result = new ResultModel();
-    const popup = this.Pr.getInsertPrPopup(result);
+    const popup = this.Pr.getInsertPrPopup(result, () => { });
     const alert = await this.alertCtrl.create(popup);
     await alert.present();
   }
