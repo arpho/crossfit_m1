@@ -104,7 +104,7 @@ export class PrDetailPage implements OnInit {
 
   async addResult(): Promise<void> {
     const result = new ResultModel();
-    const popup = this.currentPr.getInsertPrPopup(result);
+    const popup = this.currentPr.getInsertPrPopup(result, () => { this.updateResult(); });
     const alert = await this.alertCtrl.create(popup);
     const value = await alert.present();
     console.log('await', value);

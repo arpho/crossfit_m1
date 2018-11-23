@@ -116,7 +116,7 @@ export class PrModel {
         return String(pr.prestazione);
     }
 
-    getInsertPrPopup(result: ResultModel): AlertOptions {
+    getInsertPrPopup(result: ResultModel, next): AlertOptions {
         const utilities = new UtilitiesService();
         return {
             subHeader: 'Il tuo nuovo Pr',
@@ -137,6 +137,7 @@ export class PrModel {
                     result.date = new Date(data[1]);
                     result.stringifiedDate = result.date.toISOString().split('T')[0] + ' ';
                     this.pushPr(result);
+                    next();
                 }
             }]
         };
@@ -239,7 +240,7 @@ export interface BestInterface {
     getBestPr(): ResultModel;
     loadPr(any);
     getLastPr(): ResultModel;
-    getInsertPrPopup(result: ResultModel): AlertOptions;
+    getInsertPrPopup(result: ResultModel, next): AlertOptions;
     formatResult(pr: ResultModel): string | number;
     format_result_4_label(prestazione: number): string | number;
 }
@@ -266,7 +267,7 @@ export class PrTime extends PrModel implements BestInterface {
     }
 
 
-    getInsertPrPopup(result: ResultModel): AlertOptions {
+    getInsertPrPopup(result: ResultModel, next): AlertOptions {
         const utilities = new UtilitiesService();
         return {
             subHeader: 'Il tuo nuovo  tempo Pr',
@@ -294,6 +295,7 @@ export class PrTime extends PrModel implements BestInterface {
                     this.pushPr(result);
                     const last = this.getLastPr();
                     console.log(this.prList);
+                    next();
                 }
             }]
         };
