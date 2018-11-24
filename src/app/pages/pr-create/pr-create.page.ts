@@ -40,10 +40,10 @@ export class PrCreatePage implements OnInit {
     console.log(type);
     return 'Kg';
   }
-  change() {
+  change(e) {
     this.Pr = this.Pr.cloneOtherModel();
   }
-  changeHero() {
+  changeHero(e) {
     console.log('change', this.prType);
     this.Pr = this.Pr.cloneOtherModel();
     if (this.Pr.hero && this.Pr.girl) {
@@ -55,7 +55,7 @@ export class PrCreatePage implements OnInit {
     return this.Pr.formatResult(pr);
   }
 
-  changeGirl() {
+  changeGirl(e) {
     this.Pr = this.Pr.cloneOtherModel();
     if (this.Pr.hero && this.Pr.girl) {
       this.Pr.hero = false;

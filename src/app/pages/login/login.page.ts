@@ -36,7 +36,10 @@ export class LoginPage implements OnInit {
       ],
     });
   }
-  
+  onSubmit() {
+    console.log('submit');
+  }
+
 
   async loginUser(loginForm: FormGroup): Promise<void> {
     if (!loginForm.valid) {

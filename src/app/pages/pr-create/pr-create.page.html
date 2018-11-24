@@ -56,7 +56,7 @@
                 <div *ngSwitchCase="true"><img src="assets/icon/hero.ico" (click)="addResult()" ng-switch-when="true"> </div>
             </div>               
                 
-            <ion-toggle [(ngModel)]="Pr.hero" (ngModelChange)="changeHero(Girl$event)" type="boolean" (change)="getUnity()" (click)="getUnity()"
+            <ion-toggle [(ngModel)]="Pr.hero" (ngModelChange)="changeHero($event)" type="boolean" (change)="getUnity()" (click)="getUnity()"
             placeholder="getUnity()">
 
  

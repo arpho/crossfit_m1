@@ -22,7 +22,6 @@ export class ShowResultsPage implements OnInit {
     console.log('pr', this.currentPr);
     console.log('new pr', this.currentPr);
     const alert = await this.alertCtrl.create({
-      title: 'Conferma cancellazione pr',
       message: 'vuoi cancellare questo pr?',
       buttons: [
         {
