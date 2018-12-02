@@ -254,6 +254,7 @@ export interface BestInterface {
     formatResult(pr: ResultModel): string | number;
     format_result_4_label(prestazione: number): string | number;
 }
+
 export class PrTime extends PrModel implements BestInterface {
     constructor(
         Descrizione?: string,
@@ -362,6 +363,6 @@ export class PrKg extends PrModel implements BestInterface {
     }
 
     getBestPr() {
-        return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione >= current.prestazione) ? prev : current);
+        return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione > current.prestazione) ? prev : current);
     }
 }
