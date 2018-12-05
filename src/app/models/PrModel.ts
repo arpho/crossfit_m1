@@ -20,7 +20,7 @@ export class ResultModel implements ItemInterface {
     }
     load(item: any) {
         this.id = item.id;
-        this.prestazione = item.prestazione;
+        this.prestazione = Number(item.prestazione);
         if (item.note) {
             this.note = item.note;
         }
@@ -363,6 +363,7 @@ export class PrKg extends PrModel implements BestInterface {
     }
 
     getBestPr() {
-        return this.prList.reduce((prev: ResultModel, current: ResultModel) => (prev.prestazione > current.prestazione) ? prev : current);
-    }
+        return this.prList.reduce((prev: ResultModel, current: ResultModel) =>{ 
+            console.log('reducing', prev.prestazione,current.prestazione,prev.prestazione > current.prestazione)
+            return (prev.prestazione > current.prestazione) ? prev : current;)};    }
 }

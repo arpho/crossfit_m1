@@ -17,7 +17,7 @@ export class PrListPage implements OnInit {
     this.ionViewDidLoad();
   }
   showResult(pr: BestInterface) {
-    return pr.formatResult(pr.getLastPr());
+    return pr.formatResult(pr.getBestPr());
   }
 
   ionViewDidLoad() {
